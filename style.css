@@ -1,0 +1,20 @@
+
+/************ GLOSSARY *************/
+
+.glossaryWord {
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.glossaryWord:hover {
+    background: orange;
+}
+
+div {
+    width: 480px;
+    font-family: Arial;
+}
+
