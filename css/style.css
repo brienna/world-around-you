@@ -27,6 +27,13 @@ h1 {
     background: orange;
 }
 
+.subtitleSpan:hover {
+    background: orange;
+}
+
+.subtitleSpan {
+    display: inline;
+}
 
 
 

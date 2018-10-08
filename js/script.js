@@ -93,9 +93,15 @@ $(document).ready(function() {
                 var cue = textTrack.cues[j];
 
                 // Build build transcript div
-                var subtitleSpan = document.createElement('span');
+                var subtitleSpan = document.createElement('a');
                 subtitleSpan.textContent = cue.text + " ";
-                subtitleSpan.className += " subtitleSpan";
+                subtitleSpan.setAttribute('class', 'subtitleSpan');
+                subtitleSpan.setAttribute('start', cue.startTime);
+                subtitleSpan.onclick = function() {
+                    console.log(this.getAttribute('start'));
+                    storyVideo.currentTime = this.getAttribute('start');
+                    storyVideo.play();
+                }
                 transcript.appendChild(subtitleSpan);
             }
 
@@ -119,7 +125,6 @@ $(document).ready(function() {
                 }
             };
         });
-
     }
 
 });
