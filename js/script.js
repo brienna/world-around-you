@@ -2,10 +2,10 @@
 // Once the HTML has loaded, proceed with script
 $(document).ready(function() {
     // Get HTML elements we need
-    var video = document.getElementsByTagName('video')[0];
+    var video = document.getElementById('glossaryVideo');
+    var storyVideo = document.getElementById('storyVideo');
 
     /**************************** LOAD STORY VIDEO PAGE ****************************/
-
     var whichStory = "story1";
     var glossary = null;
     loadGlossary(whichStory);
@@ -20,14 +20,14 @@ $(document).ready(function() {
                     var storyData = JSON.parse(this.responseText);
                     parseStoryData(storyData);
                 }
-            }
+            };
             xmlhttp.open("GET", dataUrl);
             xmlhttp.send();
         }
     }
 
     function parseStoryData(data) {
-        var glossary = data["vid1"].glossary;
+        var glossary = data.vid1.glossary;
 
         // Grab time stamps
         glossary.forEach(function(glossaryItem) {
@@ -78,6 +78,49 @@ $(document).ready(function() {
             }
         } 
     });  
+
+    /**************************** INTERACTIVE TRANSCRIPT ****************************/
+    // NOTE Adopt video.js for more advanced controls, eg removing volume button
+    var trackElements = document.querySelectorAll('track');
+    var transcript = document.getElementById('transcript');
+
+    // For each track element
+    for (var i = 0; i < trackElements.length; i++) {
+        trackElements[i].addEventListener('load', function() {
+            var textTrack = this.track; // HTMLTrackElement
+            var isSubtitles = textTrack.kind === "subtitles"; 
+            for (var j = 0; j < textTrack.cues.length; ++j) {
+                var cue = textTrack.cues[j];
+
+                // Build build transcript div
+                var subtitleSpan = document.createElement('span');
+                subtitleSpan.textContent = cue.text + " ";
+                subtitleSpan.className += " subtitleSpan";
+                transcript.appendChild(subtitleSpan);
+            }
+
+            // Handle event when the subtitle appears
+            textTrack.oncuechange = function() {
+                // "this" refers to textTrack
+                var activeSubtitle;
+                var activeCue;
+                if (this.activeCues.length > 0) {
+                    activeCue = this.activeCues[0];
+                    activeSubtitle = activeCue.text.trim();
+                } 
+                subtitleSpans = document.getElementsByClassName('subtitleSpan');
+                for (var k = 0; k < subtitleSpans.length; k++) {                       
+                    subtitleSpanText = subtitleSpans.item(k).textContent.trim();
+                    if (subtitleSpanText === activeSubtitle) {
+                        subtitleSpans.item(k).style.backgroundColor = "orange";
+                    } else {
+                        subtitleSpans.item(k).style.backgroundColor = "";
+                    }
+                }
+            };
+        });
+
+    }
 
 });
 

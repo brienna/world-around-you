@@ -4,20 +4,57 @@
 <head>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Bootstrap-->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
     <!-- My stylesheet -->
-    <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
     <!-- jQuery 3.3.1 -->
-    <script src="jquery-min.js"></script> 
+    <script src="js/jquery-min.js"></script> 
     <!-- My script -->
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </head>
 
 <body>
-    <!-- Story video -->
-    <video width="480" controls>
-        <source src="./example.mp4" type="video/mp4">
-        Your browser does not support HTML5 video.
-    </video>
-    <!-- Story text -->
-    <div><p id="storyText"></p></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">     
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Transcript/subtitle example</h1>
+                        <p><em>Interact with the transcript/subtitles.</em></p>
+                        <!-- Story video -->
+                        <div id="videoContainer">
+                            <video id="storyVideo" controls controlsList="nodownload">
+                                <source src="./example.mp4" type="video/mp4">
+                                <track default type="text/vtt" src="transcript.vtt" kind="subtitles" label="English" default>
+                                Your browser does not support HTML5 video.
+                            </video>
+                        </div> 
+                        <!-- Story text -->
+                        <p id="transcript"></p>
+                    </div>
+                </div>
+            </div> <!-- end 1st column -->
+
+
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>Glossary example</h1>
+                        <p><em>Click on each bold word to see the word on a loop.</em></p>
+                        <!-- Glossary video -->
+                        <video id="glossaryVideo" controls controlsList="nodownload">
+                            <source src="./example.mp4" type="video/mp4">
+                            Your browser does not support HTML5 video.
+                        </video>
+                    </div>
+                </div>
+
+                <p id="storyText"></p>
+            </div> <!-- end 2nd column -->
+        </div> <!-- end row -->
+    </div> <!-- end container -->
+
 </body>
+
+
