@@ -14,6 +14,14 @@ nav {
     height: 520px;
 }
 
+.container-fluid > .row:first-child > div:nth-child(2) { /* make relative so controls can stay on bottom */
+    position: relative;
+    height: 100%;
+    background-color: #868686;
+    padding: 0;
+    margin: 0;
+}
+
 .container-fluid > .row:nth-child(2) {
     padding-top: 42px;
 }
@@ -38,8 +46,10 @@ nav {
 
 .component {
     float: none;
-    width: 100%;
     margin: 0 auto;
+    width: 100%;
+    max-width: 100%;
+    max-height: 100%;
 }
 
 .vertical-align { /* assign to the row that you want all columns vertically aligned in */
@@ -47,13 +57,19 @@ nav {
     align-items: center;
 }
 
+
+
 /* CONTROLS */
 
 .controls {
-    background-color: white;
-    width: 75%;
+    background-color: #343232;
+    width: 100%;
     height: 48px;
-    float: right;
+    opacity: .88;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    border-radius: 4px;
 }
 
 /* ARROWS */
@@ -115,8 +131,64 @@ i {
     padding-right: 10px;
 }
 
+.fa-arrows {
+
+}
+
 .bold {
     font-weight: bold;
 }
 
+#storyText {
+    background-color: #d8d8d8;
+    font-size: 29px;
+    padding: 50px 114px 98px 114px;
+    bottom: 0px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+}
 
+/* SLIDER */
+#slider {
+    width: ;
+    margin: 0 auto;
+}
+
+.ui-slider-horizontal {
+    height: 3px;
+    width: 75%;
+
+}
+
+.ui-slider {
+    border: 0;
+    background-color: #ededed;
+    border-radius: 6px;
+    top: 50%;
+}
+
+.ui-slider-handle {
+    width: 19px;
+    height: 18px;
+    background-color: #ededed;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    top: 50%;
+    margin-top: -4px;
+}
+
+.ui-slider-handle:hover {
+    opacity: 0.8;
+}
+
+.tickmark {
+    display:inline-block;
+    width: 1px;
+    background-color: #ededed;;
+    height: 18px;
+    position:absolute;
+    top: -250%;
+    border-radius: 6px;
+}

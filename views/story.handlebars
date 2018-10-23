@@ -9,11 +9,15 @@
     <!-- Featherlight -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
     <!-- Font Awesome icons -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+    <!-- jQuery UI stylesheet -->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css">
     <!-- My stylesheet -->
     <link rel="stylesheet" type="text/css" href="css/zeplin.css">
     <!-- jQuery 3.3.1 -->
     <script src="js/jquery-min.js"></script> 
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <!-- Featherlight -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.13/featherlight.min.js"></script>
     <!-- My script -->
@@ -27,30 +31,35 @@
     <div class="container-fluid view">
         <!-- Panel -->
         <div class="row panel vertical-align">
-            <div class="col-md-2 col-xs-2">
+            <div class="col-md-2 col-xs-4">
                 <div class="leftArrow arrow"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
             </div>
 
-            <div class="col-md-8 col-xs-8 vcenter">
+            <div class="col-md-8 col-xs-4">
                 <!-- Picture -->
                 <img class="component" src="pictures/story_2/story_2_1.png" />
 
                 <!-- Video -->
-                <video class="component" controls>
+                <video class="component">
                     <source src="videos/example.mp4" type="video/mp4">
                     Your browser does not support HTML5 video.
+                    <!-- Add custom seek bar https://stackoverflow.com/questions/41953604/html5-video-custom-additional-seek-bar -->
                 </video>
 
                 <!-- Glossary -->
                 <div class="component">
                     <p id="storyText"></p>
                 </div>
+
+                <div class="controls">
+                    <div id="slider"></div>
+                    <i class="fal fa-arrows"></i>
+                </div>
             </div>
 
-            <div class="col-md-2 col-xs-2">
+            <div class="col-md-2 col-xs-4">
                 <div class="rightArrow arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
             </div>
-
         </div>
 
         <!-- Title and little bits of info -->

@@ -52,6 +52,37 @@ window.onload = function() {
         }
     }
 
+    /**************************** SLIDER BAR ****************************/
+    $("#slider").slider({
+        min: 1,
+        max: 3, // will change this based on how many pages we have. For we have 3 components, not pages
+        step: 1, 
+        change: slideTo,
+        range: false,
+        orientation: 'horizontal',
+        create: function(event, ui) { // set ticks
+            setSliderTicks(event.target);
+        }
+    });
+
+    // Handles "next button" 
+    function slideTo(event, ui) {
+        $("#val").html(ui.value);
+    } // https://codepen.io/nevcanuludas/pen/nFfsb
+
+    function setSliderTicks(){
+        var $slider =  $('#slider');
+        var max =  $slider.slider("option", "max");    
+        var spacing =  100 / (max - 1);
+        console.log(spacing);
+
+        $slider.find('.tickmark').remove();
+        for (var i = 0; i < max ; i++) {
+            console.log("appending tick mark");
+            $('<span class="tickmark"></span>').css('left', (spacing * i) +  '%').appendTo($slider); 
+         }
+    }
+
     /**************************** GLOSSARY ****************************/
     var whichStory = "story_2";
     var glossary = null;
