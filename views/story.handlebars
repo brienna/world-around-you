@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- Bootstrap-->
+    <!--<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">-->
+    <!-- Featherlight -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.13/featherlight.min.css" type="text/css" rel="stylesheet" />
+    <!-- Font Awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- My stylesheet -->
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <!-- jQuery 3.3.1 -->
+    <script src="js/jquery-min.js"></script> 
+    <!-- Featherlight -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/featherlight/1.7.13/featherlight.min.js"></script>
+    <!-- My script -->
+    <script src="js/story_script.js"></script>
+
+</head>
+
+<body>
+    <!-- The story -->
+    <div class="container view">
+        <div class="row">
+            <div class="panel" class="col-md-12">
+                <div class="arrow"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+
+                <!-- Picture -->
+                <img class="component" src="pictures/story_2/story_2_1.png" />
+
+                <!-- Video -->
+                <video class="component" controls>
+                    <source src="videos/example.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+
+
+                <!-- Glossary -->
+                <div class="component">
+                    <p id="storyText"></p>
+                    <div style="display: none"> 
+                        <video class="glossaryVid"> 
+                            <source src="videos/example.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                
+                <div class="arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+            </div>
+        </div>
+    </div>
+</body>

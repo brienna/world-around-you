@@ -1,0 +1,31 @@
+
+{
+    "story_2" : {
+        "glossary" : [
+            {
+                "text": "Once upon a "
+            },
+            {
+                "text": "time",
+                "timeStamp": ["3", "4"]
+            },
+            {
+                "text": ", there was a "
+            },
+            {
+               "text": "Lion",
+               "timeStamp": ["6", "7"]
+            },
+            {
+                "text": " and a "
+            },
+            {
+                "text": "Mouse",
+                "timeStamp": ["7", "8"]
+            },
+            {
+                "text": "."
+            }
+        ]
+    }
+}
