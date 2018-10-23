@@ -1,10 +1,33 @@
 
-/* PANEL SETUP */
-.row:first-child {
-    margin-top: 136px;
+body {
+    background-color: #ededed;
+}
+
+nav {
+    height: 80px;
+    background-color: #717070;
+}
+
+/* ROWS SETUP */
+.container-fluid > .row:first-child {
+    margin-top: 56px;
     height: 520px;
 }
 
+.container-fluid > .row:nth-child(2) {
+    padding-top: 42px;
+}
+
+.container-fluid > .row:nth-child(3) {
+    background-color: #e6e6e6;
+    padding: 28px 0px;
+}
+
+.container-fluid > .row:nth-child(4) {
+    padding: 46px 0px;
+}
+
+/* PANEL SETUP */
 .panel {
     background-color: #343232;
 }
@@ -14,8 +37,6 @@
 }
 
 .component {
-    display: inline-block; /* so can use vertical-align class */
-    vertical-align: middle;
     float: none;
     width: 100%;
     margin: 0 auto;
@@ -24,6 +45,15 @@
 .vertical-align { /* assign to the row that you want all columns vertically aligned in */
     display: flex;
     align-items: center;
+}
+
+/* CONTROLS */
+
+.controls {
+    background-color: white;
+    width: 75%;
+    height: 48px;
+    float: right;
 }
 
 /* ARROWS */
@@ -59,3 +89,34 @@
     -o-user-select: none;
     user-select: none;
 }
+
+/* BELOW THE PANEL */
+h1 {
+    font-family: Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-weight: bold;
+    font-size: 40px;
+    color: #414141;
+}
+
+h2 {
+    color: #414141;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+    font-size: 16px;
+    color: #414141;
+}
+
+i {
+    color: #8e8585;
+    padding-right: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+

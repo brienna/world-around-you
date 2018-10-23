@@ -80,8 +80,8 @@ window.onload = function() {
         var vid = document.createElement('video');
         vid.setAttribute('class', 'glossaryVid');
         vid.src = 'videos/example.mp4';
-        //vid.muted = "muted";
         vid.autoplay = true;
+        vid.muted = true;
 
         // Grab time stamps
         glossary.forEach(function(glossaryItem) {
@@ -96,8 +96,8 @@ window.onload = function() {
                     .text(text) // need to fix so that it sets these time stamp onto the trigger & featherlight can read
                     .featherlight($(vid), {
                         afterOpen: playVideoInterval(vid, timeStamp[0], timeStamp[1]),
-                        root: 'body',
-
+                        root: '.panel',
+                        persist: true // may need to remove
                     });
             } else {
             // If the phrase contains no time stamp, add it as plain text
@@ -115,13 +115,29 @@ window.onload = function() {
         glossaryVid.setAttribute('end', end);
         $(glossaryVid).data('loop', true);
         glossaryVid.setAttribute('currentTime', $(glossaryVid).attr('start'));
-        $(glossaryVid).on('timeupdate', loop);
+        //$(glossaryVid).on('timeupdate', loop);
         $(glossaryVid)[0].play();
         console.log($(glossaryVid)[0]);
 
         function loop() {
             if ($(this).attr('currentTime') >= $(glossaryVid).attr('end') && $(glossaryVid).data('loop')) {
                 $(glossaryVid).attr('currentTime', $(glossaryVid).attr('start'));
+            }
+            console.log(glossaryVid);
+            glossaryVid.setAttribute('start', start);
+            glossaryVid.setAttribute('end', end);
+            $(glossaryVid).data('loop', true);
+            glossaryVid.currentTime = $(glossaryVid).attr('start');
+            glossaryVid.addEventListener('timeupdate', loop);
+            console.log(glossaryVid.currentTime);
+            glossaryVid.play();
+
+            function loop() {
+                console.log('playing loop');
+                console.log(this.currentTime);
+                if (this.currentTime >= $(glossaryVid).attr('end') && $(glossaryVid).data('loop')) {
+                    glossaryVid.currentTime = $(glossaryVid).attr('start');
+                }
             }
         }
     } 
