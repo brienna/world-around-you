@@ -1,7 +1,7 @@
 
 ## How to use
 
-Install the dependencies (NodeJs, Express, Express-Handlebars), then run the application:
+Install the dependencies (NodeJS, Express, Express-Handlebars), then run the web app from the root directory:
 
     npm init
 

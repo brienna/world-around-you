@@ -1,0 +1,61 @@
+
+/* PANEL SETUP */
+.row:first-child {
+    margin-top: 136px;
+    height: 520px;
+}
+
+.panel {
+    background-color: #343232;
+}
+
+.component ~ .component { /* hides all but first component */
+    display: none;
+}
+
+.component {
+    display: inline-block; /* so can use vertical-align class */
+    vertical-align: middle;
+    float: none;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.vertical-align { /* assign to the row that you want all columns vertically aligned in */
+    display: flex;
+    align-items: center;
+}
+
+/* ARROWS */
+.arrow {
+    z-index: 5;
+}
+
+.leftArrow {
+    float: right;
+}
+
+.rightArrow {
+    float: left;
+}
+
+.fa-angle-right, .fa-angle-left {
+    color: #acabab;
+    opacity: 1.0;
+    font-size: 57.1px;
+}
+
+.fa-angle-left:hover, .fa-angle-right:hover {
+    opacity: 0.2;
+    cursor: pointer;
+}
+
+/* Picture component */ 
+.panel img {
+    /* removes blue overlay if selecting image */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
