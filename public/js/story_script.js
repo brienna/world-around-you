@@ -86,6 +86,9 @@ window.onload = function() {
 
         console.log('Currently showing component ' + currComponent);
 
+        // Deactivate left arrow at the beginning
+        leftArrow.classList.add('deactivated');
+
         // Set right arrow to advance forward through story
         rightArrow.addEventListener('click', function() {
             // If currently on last component of current page, 
@@ -110,6 +113,19 @@ window.onload = function() {
                 currComponent++;
                 toggleVisibility(components[currComponent]);
                 console.log('Moved to component ' + currComponent);
+            }
+
+            // If not on first component on first page, ensure left arrow activated 
+            if (!(currComponent == 0 && currPage == 1)) {
+                if (leftArrow.classList.contains('deactivated')) {
+                    leftArrow.classList.remove('deactivated');
+                }
+            } 
+            // If on last component on last page, ensure right arrow deactivated
+            if (currComponent == 2 && currPage == numOfPages) {
+                if (!rightArrow.classList.contains('deactivated')) {
+                    rightArrow.classList.add('deactivated');
+                }
             }
         });
 
@@ -137,6 +153,19 @@ window.onload = function() {
                 currComponent--;
                 toggleVisibility(components[currComponent]);
                 console.log('Moved to component ' + currComponent);
+            }
+
+            // If on first component on first page, ensure left arrow deactivated
+            if (currComponent == 0 && currPage == 1) {
+                if (!leftArrow.classList.contains('deactivated')) {
+                    leftArrow.classList.add('deactivated');
+                }
+            }
+            // If not on last component on last page, ensure right arrow activated
+            if (!(currComponent == 2 && currPage == numOfPages)) {
+                if (rightArrow.classList.contains('deactivated')) {
+                    rightArrow.classList.remove('deactivated');
+                }
             }
         });
     }
