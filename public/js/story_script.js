@@ -88,33 +88,60 @@ window.onload = function() {
 
         // Set right arrow to advance forward through story
         rightArrow.addEventListener('click', function() {
-            // Increment component tracker 
-            currComponent++;
-
-            // If past the last component of current page, advance to the next page
-            if (currComponent > 2) {
-                console.log('Turning from page ' + currPage + ' to page ' + (currPage + 1)); 
-                // Turn to new page
-                currPage++; 
-                // Parse new page
-                parsePage(currPage); 
-                // Hide current component
-                toggleVisibility(components[currComponent - 1]);
-                // Reset component tracker and show first component of new page
-                currComponent = 0;  
-                toggleVisibility(components[currComponent]);
-                console.log('Moving to component ' + currComponent);
+            // If currently on last component of current page, 
+            if (currComponent == 2) {
+                // And if not on last page, advance to next page
+                if (currPage < 2) {
+                    // Increment page tracker
+                    currPage++;
+                    // Parse new page
+                    parsePage(currPage);
+                    // Hide current component
+                    toggleVisibility(components[currComponent]);
+                    // Reset component tracker and show first component of new page
+                    currComponent = 0;
+                    toggleVisibility(components[currComponent]);
+                    console.log('Moved to component ' + currComponent);
+                } 
             } else {
-                // Replace current component with the next component
-                console.log('Moving to component ' + currComponent);
-                toggleVisibility(components[currComponent - 1]);
+                // If not on the last component of current page, hide current component
                 toggleVisibility(components[currComponent]);
-
+                // Increment component tracker and show next component
+                currComponent++;
+                toggleVisibility(components[currComponent]);
+                console.log('Moved to component ' + currComponent);
             }
-            
-            
+        });
+
+        // Set left arrow to go backward through story
+        leftArrow.addEventListener('click', function() {
+            // If currently on first component of current page,
+            if (currComponent == 0) {
+                // And if not on the first page, go back to last page
+                if (currPage > 1) {
+                    // Decrement page tracker
+                    currPage--;
+                    // Parse new page
+                    parsePage(currPage);
+                    // Hide current component
+                    toggleVisibility(components[currComponent]);
+                    // Reset component tracker and show last component of last page
+                    currComponent = 2;
+                    toggleVisibility(components[currComponent]);
+                    console.log('Moved to component ' + currComponent);
+                }
+            } else {
+                // If not on the first component of current page, hide current component
+                toggleVisibility(components[currComponent]);
+                // Decrement component tracker and show last component
+                currComponent--;
+                toggleVisibility(components[currComponent]);
+                console.log('Moved to component ' + currComponent);
+            }
         });
     }
+
+        
 
     // Toggles visibility of passed element
     function toggleVisibility(element) {

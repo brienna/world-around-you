@@ -96,6 +96,11 @@ nav {
     cursor: pointer;
 }
 
+.deactivated {
+    opacity: 0.2;
+    cursor: default;
+}
+
 /* Picture component */ 
 .panel img {
     /* removes blue overlay if selecting image */
