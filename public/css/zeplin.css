@@ -146,7 +146,7 @@ i {
     bottom: 0px;
     position: absolute;
     width: 100%;
-    text-align: center;
+    text-align: left;
 }
 
 /* SLIDER */
@@ -192,3 +192,21 @@ i {
     top: -250%;
     border-radius: 6px;
 }
+
+/* Glossary */
+.glossary {
+    background: none;
+    border: none;
+    outline: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.glossary:hover {
+    background: orange;
+}
+
+
+
+
+

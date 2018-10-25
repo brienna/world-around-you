@@ -1,5 +1,81 @@
 
 window.onload = function() {
+    
+    /**************************** LOAD STORY JSON FILE ****************************/
+
+    var whichStory = "story_2"; // the ID of the story in the JSON file
+    var currStoryData = null;
+    var numOfPages = 0;
+    loadStory(whichStory);
+
+    // Load JSON file for one story
+    function loadStory(storyId) {
+        if (window.XMLHttpRequest) {
+            console.log("Loading text for " + storyId + "...");
+            var xmlhttp = new XMLHttpRequest();
+            var dataUrl = 'text/' + whichStory + '.json';
+            xmlhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    // Save story and parse first page
+                    currStoryData = JSON.parse(this.responseText);
+                    numOfPages = Object.keys(currStoryData).length - 1;  // -1 due to title
+                    parsePage(1);
+                }
+            };
+            xmlhttp.open("GET", dataUrl);
+            xmlhttp.send();
+        }
+    }
+
+    /**************************** PARSE PAGE INTO HTML ELEMENTS ****************************/
+
+    var picFilepathRoot = "pictures/" + whichStory + "/" + whichStory + '_';
+    var vidFilepathRoot = "videos/" + whichStory + "/" + whichStory + '_';
+
+    // Parse story JSON by page into components
+    function parsePage(pageNum) {
+        console.log('Parsing page ' + pageNum + ' of ' + whichStory);
+
+        // Get the three HTML components (0: pic, 1: vid, 2: glossary)
+        var components = document.getElementsByClassName('component'); // 0 - pic, 1 - vid, 2 - glossary
+        // Set the picture component
+        components[0].src = picFilepathRoot + pageNum + '.png';
+        // Set the video component
+        components[1].src = vidFilepathRoot + pageNum + '.mp4';
+        // Set the glossary component
+        var glossary = currStoryData[pageNum].glossary;
+        glossary.forEach(function(phrase) {
+            var timestamp = phrase.timestamp;
+            var text = phrase.text;
+
+            // If the phrase contains timestamp, identify as glossary word
+            if (timestamp) {
+                $('<span></span>')
+                    .addClass('glossary')
+                    .appendTo("#storyText")
+                    .text(text) // need to fix so that it sets these time stamp onto the trigger & featherlight can read
+            } else {
+                // If the phrase contains no time stamp, add it as plain text
+                $('<span></span>')
+                    .appendTo('#storyText')
+                    .text(text);
+            }
+        });
+    }
+
+    /**************************** PARSE PAGE INTO HTML ELEMENTS ****************************/
+
+
+
+        
+        /*
+        var vid = document.createElement('video');
+        vid.setAttribute('class', 'glossaryVid');
+        vid.src = 'videos/example.mp4';
+        vid.autoplay = true;
+        vid.muted = true;
+        */
+
 
     /**************************** STORY PAGE SETUP ****************************/
     var pageComponentTracker = 0; // tracks which component is showing (pic, vid, glossary)
@@ -40,7 +116,7 @@ window.onload = function() {
             toggleVisibility(pageComponents[pageComponentTracker+1]);
             toggleVisibility(pageComponents[pageComponentTracker]);
         }
-    })
+    });
 
     // Toggles visibility of passed element
     function toggleVisibility(element) {
@@ -84,60 +160,7 @@ window.onload = function() {
     }
 
     /**************************** GLOSSARY ****************************/
-    var whichStory = "story_2";
-    var glossary = null;
-    loadGlossary(whichStory);
-
-    function loadGlossary(storyId) {
-        if (window.XMLHttpRequest) {
-            console.log("Loading text for " + storyId + "...");
-            var xmlhttp = new XMLHttpRequest();
-            var dataUrl = 'text/' + whichStory + '.json';
-            xmlhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    var storyData = JSON.parse(this.responseText);
-                    parseStoryData(storyData);
-                }
-            };
-            xmlhttp.open("GET", dataUrl);
-            xmlhttp.send();
-        }
-    }
-
-
-    function parseStoryData(data) {
-        glossary = data[whichStory].glossary;
-
-        var vid = document.createElement('video');
-        vid.setAttribute('class', 'glossaryVid');
-        vid.src = 'videos/example.mp4';
-        vid.autoplay = true;
-        vid.muted = true;
-
-        // Grab time stamps
-        glossary.forEach(function(glossaryItem) {
-            var timeStamp = glossaryItem.timeStamp;
-            var text = glossaryItem.text;
-
-            // If the phrase contains a time stamp, add it as button
-            if (timeStamp) {
-                $('<span></span>')
-                    .addClass('glossaryWord')
-                    .appendTo("#storyText")
-                    .text(text) // need to fix so that it sets these time stamp onto the trigger & featherlight can read
-                    .featherlight($(vid), {
-                        afterOpen: playVideoInterval(vid, timeStamp[0], timeStamp[1]),
-                        root: '.panel',
-                        persist: true // may need to remove
-                    });
-            } else {
-            // If the phrase contains no time stamp, add it as plain text
-                $('<span></span>')
-                    .appendTo('#storyText')
-                    .text(text);
-            }
-        });
-    }
+ 
 
     // Show featherlight if user clicks on a glossary word
     function playVideoInterval(glossaryVid, start, end) {

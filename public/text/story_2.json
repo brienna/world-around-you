@@ -1,27 +1,105 @@
 
 {
-    "story_2" : {
-        "glossary" : [
+    "title": "Malakas and Maganda",
+    "1" : {
+        "glossary": [
             {
-                "text": "Once upon a "
+                "text": "When the "
             },
             {
-                "text": "time",
-                "timeStamp": ["3", "4"]
+                "text": "world",
+                "timestamp": ["2", "3"]
             },
             {
-                "text": ", there was a "
+               "text": " first began, there was no "
             },
             {
-               "text": "Lion",
-               "timeStamp": ["6", "7"]
+                "text": "land",
+                "timestamp": ["2", "3"]
             },
             {
-                "text": " and a "
+                "text": ". There was only the "
             },
             {
-                "text": "Mouse",
-                "timeStamp": ["7", "8"]
+                "text": "Sea",
+                "timestamp": ["2", "3"]
+            },
+            {
+                "text": " and the "
+            },
+            {
+                "text": "Sky",
+                "timestamp": ["2", "3"]
+            },
+            {
+                "text": ". A huge, beautiful "
+            },
+            {
+                "text": "Kite",
+                "timestamp": ["2", "3"]
+            },
+            {
+                "text": " (a bird similar to a hawk) flew between them."
+            }
+        ]
+    },
+    "2": {
+        "glossary": [
+            {
+                "text": "One day, the "
+            },
+            {
+                "text": "Kite",
+                "timestamp": []
+            },
+            {
+                "text": " "
+            },
+            {
+                "text": "grew",
+                "timestamp": []
+            },
+            {
+                "text": " "
+            },
+            {
+                "text": "tired",
+                "timestamp": []
+            },
+            {
+                "text": " of flying around as there was "
+            },
+            {
+                "text": "nowhere",
+                "timestamp": []
+            },
+            {
+                "text": " to land and rest. The Kite became "
+            },
+            {
+                "text": "frustrated",
+                "timestamp": []
+            },
+            {
+                "text": " and pushed the "
+            },
+            {
+                "text": "Sky",
+                "timestamp": []
+            },
+            {
+                "text": " to get in a "
+            },
+            {
+                "text": "quarrel",
+                "timestamp": []
+            },
+            {
+                "text": " against the "
+            },
+            {
+                "text": "Sea",
+                "timestamp": []
             },
             {
                 "text": "."
@@ -29,3 +107,6 @@
         ]
     }
 }
+
+
+
