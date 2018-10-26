@@ -20,6 +20,7 @@ window.onload = function() {
                     // Save story and parse first page
                     currStoryData = JSON.parse(this.responseText);
                     numOfPages = Object.keys(currStoryData).length - 1;  // -1 due to title
+                    console.log('This story has ' + numOfPages + ' pages');
                     currPage = 1;
                     parsePage(currPage);
                     createSlider();
@@ -94,7 +95,7 @@ window.onload = function() {
             // If currently on last component of current page, 
             if (currComponent == 2) {
                 // And if not on last page, advance to next page
-                if (currPage < 2) {
+                if (currPage < numOfPages) {
                     // Increment page tracker
                     currPage++;
                     // Parse new page
@@ -168,9 +169,7 @@ window.onload = function() {
                 }
             }
         });
-    }
-
-        
+    }   
 
     // Toggles visibility of passed element
     function toggleVisibility(element) {
@@ -191,26 +190,6 @@ window.onload = function() {
         vid.autoplay = true;
         vid.muted = true;
         */
-
-
-    /**************************** STORY PAGE SETUP ****************************/
-    /*
-    // Set left arrow to go backward through story
-    leftArrow.addEventListener('click', function() {
-        // Decrease the page component tracker
-        pageComponentTracker--;
-
-        if (pageComponentTracker < 0) {
-            // Go back to the last page
-            console.log("Going back one page...");
-            // Reset page component tracker
-            pageComponentTracker = 2;
-        } else {
-            // Replace current component with the last component
-            toggleVisibility(pageComponents[pageComponentTracker+1]);
-            toggleVisibility(pageComponents[pageComponentTracker]);
-        }
-    });*/
 
     /**************************** SLIDER BAR ****************************/
     function createSlider() {
