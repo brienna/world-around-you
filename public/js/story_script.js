@@ -195,9 +195,9 @@ window.onload = function() {
     function createSlider() {
         $("#slider").slider({
             min: 1,
-            max: numOfPages * 3, // will change this based on how many pages we have. For we have 3 components, not pages
+            max: numOfPages * 3, 
             step: 1, 
-            change: slideTo,
+            //change: slideTo,
             range: false,
             orientation: 'horizontal',
             create: function(event, ui) { // set ticks
@@ -215,7 +215,7 @@ window.onload = function() {
         var $slider =  $('#slider');
         var max =  $slider.slider("option", "max");    
         var spacing =  100 / (max - 1);
-        console.log(spacing);
+        console.log('Spacing: ' + spacing);
 
         $slider.find('.tickmark').remove();
         for (var i = 0; i < max ; i++) {

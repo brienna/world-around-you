@@ -190,12 +190,13 @@ i {
 
 .tickmark {
     display:inline-block;
-    width: 1px;
-    background-color: #ededed;;
-    height: 18px;
+    border-left: thin white solid;
+    background-color: #ededed;
+    height: 12px;
     position:absolute;
-    top: -250%;
-    border-radius: 6px;
+    top: -150%;
+    box-sizing: content-box;
+
 }
 
 /* Glossary */
