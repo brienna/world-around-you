@@ -19,9 +19,8 @@ window.onload = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     // Save story and parse first page
                     currStoryData = JSON.parse(this.responseText);
-                    numOfPages = Object.keys(currStoryData).length - 1;  // -1 due to title
+                    numOfPages = Object.keys(currStoryData).length;  // -1 due to title
                     console.log('This story has ' + numOfPages + ' pages');
-                    currPage = 1;
                     parsePage(currPage);
                     createSlider();
                     bindEventListeners();
@@ -55,8 +54,8 @@ window.onload = function() {
         while (storyText.firstChild) {
             storyText.removeChild(storyText.firstChild);
         }
+
         var glossary = currStoryData[pageNum].glossary;
-        console.log(glossary);
         glossary.forEach(function(phrase) {
             var timestamp = phrase.timestamp;
             var text = phrase.text;
@@ -82,41 +81,21 @@ window.onload = function() {
 
     function bindEventListeners() {
         var components = document.getElementsByClassName('component');
-        var currComponent = 0;  // tracks which component is currently showing
         var arrows = document.getElementsByClassName("arrow"); 
         var leftArrow = arrows[0];
         var rightArrow = arrows[1];
-
-        console.log('Currently showing component ' + currComponent);
 
         // Deactivate left arrow at the beginning
         leftArrow.classList.add('deactivated');
 
         // Set right arrow to advance forward through story
         rightArrow.addEventListener('click', function() {
-            // If currently on last component of current page, 
-            if (currComponent == 2) {
-                // And if not on last page, advance to next page
-                if (currPage < numOfPages) {
-                    // Increment page tracker
-                    currPage++;
-                    // Parse new page
-                    parsePage(currPage);
-                    // Reset component tracker and show first component of new page
-                    currComponent = 0;
-                    showThisComponent(components, currComponent);
-                    console.log('Moved to component ' + currComponent);
-                } 
-            } else {
-                // If not on the last component of current page
-                // Increment component tracker and show next component
-                currComponent++;
-                showThisComponent(components, currComponent);
-                console.log('Moved to component ' + currComponent);
-            }
+            var currComponent = ($('#slider').slider('value') - 1) % 3;
+            var nextIndex = (currPage * 3) + currComponent + 2;
+            $('#slider').slider('value', nextIndex); // (slider has change event handler that will show/hide correct components)
 
             // If not on first component on first page, ensure left arrow activated 
-            if (!(currComponent == 0 && currPage == 1)) {
+            if (!(currComponent == 0 && currPage == 0)) {
                 if (leftArrow.classList.contains('deactivated')) {
                     leftArrow.classList.remove('deactivated');
                 }
@@ -127,33 +106,16 @@ window.onload = function() {
                     rightArrow.classList.add('deactivated');
                 }
             }
-        });
+        }); 
 
         // Set left arrow to go backward through story
         leftArrow.addEventListener('click', function() {
-            // If currently on first component of current page,
-            if (currComponent == 0) {
-                // And if not on the first page, go back to last page
-                if (currPage > 1) {
-                    // Decrement page tracker
-                    currPage--;
-                    // Parse new page
-                    parsePage(currPage);
-                    // Reset component tracker and show last component of last page
-                    currComponent = 2;
-                    showThisComponent(components, currComponent);
-                    console.log('Moved to component ' + currComponent);
-                }
-            } else {
-                // If not on the first component of current page, 
-                // Decrement component tracker and show last component
-                currComponent--;
-                showThisComponent(components, currComponent);
-                console.log('Moved to component ' + currComponent);
-            }
+            var currComponent = ($('#slider').slider('value') - 1) % 3; 
+            var lastIndex = (currPage * 3) + currComponent;
+            $('#slider').slider('value', lastIndex); // (slider has change event handler that will show/hide correct components)
 
             // If on first component on first page, ensure left arrow deactivated
-            if (currComponent == 0 && currPage == 1) {
+            if (currComponent == 0 && currPage == 0) {
                 if (!leftArrow.classList.contains('deactivated')) {
                     leftArrow.classList.add('deactivated');
                 }
@@ -167,6 +129,7 @@ window.onload = function() {
         });
     }   
 
+    // Shows specified component, hiding all other components
     function showThisComponent(components, id) {
         // Show the desired component, ensuring other components are hidden first
         if (getDisplayValue(components[id]) == "none") {
@@ -175,7 +138,6 @@ window.onload = function() {
                     components[i].style.display = "none";
                     // If another component is a video, ensure it is paused & reset 
                     if (components[i].nodeName.toLowerCase() == 'video') {
-                        console.log('pausing video');
                         components[i].pause();
                         components[i].currentTime = 0;
                     }
@@ -191,8 +153,8 @@ window.onload = function() {
         } 
     }
 
+    // Returns calculated display value for given element
     function getDisplayValue(element) {
-        console.log(element);
         return element.currentStyle ? element.currentStyle.display : getComputedStyle(element, null).display;
     }
 
@@ -211,18 +173,19 @@ window.onload = function() {
         });
     }
 
-    // If the user changes the slider manually, update the view
+    // If the slider changes, update the view
     function slideTo(event, ui) {
+        console.log('this played');
         // Get value of slider
         var desiredId = $('#slider').slider('value') - 1;
         var desiredPage = Math.floor(desiredId/3);
         var desiredComponent = desiredId % 3; 
 
         // Make the desired page the current page 
-        currPage = desiredPage + 1;
+        currPage = desiredPage;
         parsePage(currPage);
 
-        // Show the desired component
+        // Show the desired component and hide undesired components
         var components = document.getElementsByClassName('component');
         showThisComponent(components, desiredComponent);
     } 
