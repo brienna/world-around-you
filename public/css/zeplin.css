@@ -188,6 +188,11 @@ i {
     opacity: 0.8;
 }
 
+.ui-slider-handle:focus {
+    /* remove blue focus outline in chrome */
+    outline: none;
+}
+
 .tickmark {
     display:inline-block;
     border-left: thin white solid;

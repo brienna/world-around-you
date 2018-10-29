@@ -47,7 +47,7 @@ window.onload = function() {
 
         // Set the video component
         vidComponent = document.getElementsByClassName('component')[1];
-        vidComponent.src = vidFilepathRoot + pageNum + '.mp4';
+        vidComponent.src = vidFilepathRoot + pageNum + '.MP4';
 
         // Set the glossary component
         // Delete current text
@@ -74,6 +74,8 @@ window.onload = function() {
                     .text(text);
             }
         });
+
+        console.log('Done parsing page ' + pageNum);
     }
 
     /**************************** ACTIVATE NEXT/BACK ARROWS ****************************/
@@ -100,19 +102,16 @@ window.onload = function() {
                     currPage++;
                     // Parse new page
                     parsePage(currPage);
-                    // Hide current component
-                    toggleVisibility(components[currComponent]);
                     // Reset component tracker and show first component of new page
                     currComponent = 0;
-                    toggleVisibility(components[currComponent]);
+                    showThisComponent(components, currComponent);
                     console.log('Moved to component ' + currComponent);
                 } 
             } else {
-                // If not on the last component of current page, hide current component
-                toggleVisibility(components[currComponent]);
+                // If not on the last component of current page
                 // Increment component tracker and show next component
                 currComponent++;
-                toggleVisibility(components[currComponent]);
+                showThisComponent(components, currComponent);
                 console.log('Moved to component ' + currComponent);
             }
 
@@ -140,19 +139,16 @@ window.onload = function() {
                     currPage--;
                     // Parse new page
                     parsePage(currPage);
-                    // Hide current component
-                    toggleVisibility(components[currComponent]);
                     // Reset component tracker and show last component of last page
                     currComponent = 2;
-                    toggleVisibility(components[currComponent]);
+                    showThisComponent(components, currComponent);
                     console.log('Moved to component ' + currComponent);
                 }
             } else {
-                // If not on the first component of current page, hide current component
-                toggleVisibility(components[currComponent]);
+                // If not on the first component of current page, 
                 // Decrement component tracker and show last component
                 currComponent--;
-                toggleVisibility(components[currComponent]);
+                showThisComponent(components, currComponent);
                 console.log('Moved to component ' + currComponent);
             }
 
@@ -171,25 +167,26 @@ window.onload = function() {
         });
     }   
 
-    // Toggles visibility of passed element
-    function toggleVisibility(element) {
-        var computedDisplayValue = element.currentStyle ? element.currentStyle.display : getComputedStyle(element, null).display;
-        if (computedDisplayValue == "none") {
-            element.style.display = "block";
-        } else {
-            element.style.display = "none";
-        }
-    }
-    
+    function showThisComponent(components, id) {
+        // Show the component, ensuring other components are hidden first
+        if (getDisplayValue(components[id]) == "none") {
+            for (var i = 0; i < components.length; i++) {
+                console.log('CHECKING COMPONENT ' + i);
+                console.log(getDisplayValue(components[i]));
+                if (i != id && getDisplayValue(components[i]) != "none") {
+                    components[i].style.display = "none";
+                    console.log('HIDDEN COMPONENT ' + i);
+                }
+            }
 
-        
-        /*
-        var vid = document.createElement('video');
-        vid.setAttribute('class', 'glossaryVid');
-        vid.src = 'videos/example.mp4';
-        vid.autoplay = true;
-        vid.muted = true;
-        */
+            components[id].style.display = "block";
+        } 
+    }
+
+    function getDisplayValue(element) {
+        console.log(element);
+        return element.currentStyle ? element.currentStyle.display : getComputedStyle(element, null).display;
+    }
 
     /**************************** SLIDER BAR ****************************/
     function createSlider() {
@@ -197,7 +194,7 @@ window.onload = function() {
             min: 1,
             max: numOfPages * 3, 
             step: 1, 
-            //change: slideTo,
+            change: slideTo, // on manual change
             range: false,
             orientation: 'horizontal',
             create: function(event, ui) { // set ticks
@@ -206,16 +203,28 @@ window.onload = function() {
         });
     }
 
-    // Handles "next button" 
+    // If the user changes the slider manually, update the view
     function slideTo(event, ui) {
-        $("#val").html(ui.value);
-    } // https://codepen.io/nevcanuludas/pen/nFfsb
+        // Get value of slider
+        var desiredId = $('#slider').slider('value') - 1;
+        var desiredPage = Math.floor(desiredId/3);
+        var desiredComponent = desiredId % 3; 
+        console.log('User wants to view component ' + desiredComponent + ' on page ' + desiredPage);
+
+        // Make the desired page the current page 
+        currPage = desiredPage + 1;
+        parsePage(currPage);
+
+        // Show the desired component
+        var components = document.getElementsByClassName('component');
+        showThisComponent(components, desiredComponent);
+
+    } 
 
     function setSliderTicks(){
         var $slider =  $('#slider');
         var max =  $slider.slider("option", "max");    
         var spacing =  100 / (max - 1);
-        console.log('Spacing: ' + spacing);
 
         $slider.find('.tickmark').remove();
         for (var i = 0; i < max ; i++) {
@@ -223,8 +232,17 @@ window.onload = function() {
          }
     }
 
-    /**************************** GLOSSARY ****************************/
- 
+
+
+
+
+
+
+
+
+
+
+    /**************************** GLOSSARY (UNUSED RIGHT NOW) ****************************/
 
     // Show featherlight if user clicks on a glossary word
     function playVideoInterval(glossaryVid, start, end) {
