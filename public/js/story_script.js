@@ -168,18 +168,26 @@ window.onload = function() {
     }   
 
     function showThisComponent(components, id) {
-        // Show the component, ensuring other components are hidden first
+        // Show the desired component, ensuring other components are hidden first
         if (getDisplayValue(components[id]) == "none") {
             for (var i = 0; i < components.length; i++) {
-                console.log('CHECKING COMPONENT ' + i);
-                console.log(getDisplayValue(components[i]));
                 if (i != id && getDisplayValue(components[i]) != "none") {
                     components[i].style.display = "none";
-                    console.log('HIDDEN COMPONENT ' + i);
+                    // If another component is a video, ensure it is paused & reset 
+                    if (components[i].nodeName.toLowerCase() == 'video') {
+                        console.log('pausing video');
+                        components[i].pause();
+                        components[i].currentTime = 0;
+                    }
                 }
             }
 
             components[id].style.display = "block";
+
+            // If desired component is a video, start playing
+            if (components[id].nodeName.toLowerCase() == 'video') {
+                components[id].play();
+            }
         } 
     }
 
@@ -209,7 +217,6 @@ window.onload = function() {
         var desiredId = $('#slider').slider('value') - 1;
         var desiredPage = Math.floor(desiredId/3);
         var desiredComponent = desiredId % 3; 
-        console.log('User wants to view component ' + desiredComponent + ' on page ' + desiredPage);
 
         // Make the desired page the current page 
         currPage = desiredPage + 1;
@@ -218,7 +225,6 @@ window.onload = function() {
         // Show the desired component
         var components = document.getElementsByClassName('component');
         showThisComponent(components, desiredComponent);
-
     } 
 
     function setSliderTicks(){
