@@ -17,7 +17,6 @@ nav {
 .container-fluid > .row:first-child > div:nth-child(2) { /* make relative so controls can stay on bottom */
     position: relative;
     height: 100%;
-    background-color: #868686;
     padding: 0;
     margin: 0;
 }
@@ -40,16 +39,31 @@ nav {
     background-color: #343232;
 }
 
-.component ~ .component { /* hides all but first component */
+.parent ~ .parent { /* hides all but first component */
     display: none;
 }
 
 .component {
     float: none;
+    display: block;
     margin: 0 auto;
-    width: 100%;
+    height: 100%;
     max-width: 100%;
     max-height: 100%;
+}
+
+#videoOverlay {
+    background-color: black;
+    z-index: 15;
+    position: absolute;
+    opacity: 0.6;
+    top: 136px; /* from nav and margin-top of first row*/
+    pointer-events: none; /*so mouse events pass through */
+}
+
+.parent {
+    width: 100%;
+    height: 100%;
 }
 
 .vertical-align { /* assign to the row that you want all columns vertically aligned in */
@@ -199,11 +213,15 @@ i {
 
 .tickmark {
     display:inline-block;
-    border-left: thin white solid;
+    /*border-left: thin white solid;*/
     background-color: #ededed;
-    height: 12px;
+    height: 6px;
+    width: 6px;
+    border-radius: 100%;
+    -webkit-border-radius:8px;
+    -moz-border-radius:8px;
     position:absolute;
-    top: -150%;
+    top: -50%;
     box-sizing: content-box;
 
 }

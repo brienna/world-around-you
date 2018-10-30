@@ -87,7 +87,7 @@ window.onload = function() {
          
     }
 
-    $.fn.resizeText = function (options) {//is getting called but is not working with left arrow...? probably cuz of display: none
+    $.fn.resizeText = function (options) {//is getting called but is not working with left arrow...? probably cuz of display: none, yep. it works with right arrow cuz 3rd component is display: block so it can be resized immediately before it disappears, but with the left arrow it is display: none so it can't be resized at all https://stackoverflow.com/questions/363276/hide-something-with-css-without-displaynone-or-javascript
         var settings = $.extend({ maxfont: 40, minfont: 15 }, options);
 
         var style = $('<style>').html('.nodelays ' +
@@ -124,7 +124,7 @@ window.onload = function() {
     /**************************** ACTIVATE NEXT/BACK ARROWS ****************************/
 
     function bindEventListeners() {
-        var components = document.getElementsByClassName('component');
+        var components = document.getElementsByClassName('parent');
         var arrows = document.getElementsByClassName("arrow"); 
         var leftArrow = arrows[0];
         var rightArrow = arrows[1];
@@ -171,6 +171,21 @@ window.onload = function() {
                 }
             }
         });
+
+        // When hovering over video element, show overlay
+        for (var i = 0; i < components.length; i++) {
+            if (components[i].children[0].nodeName.toLowerCase() == 'video') {
+                var vidEle = components[i].children[0];
+                vidEle.addEventListener('mouseenter', function() {
+                    console.log('hovering over video');
+                    console.log(this.videoWidth + ' ' + this.offsetWidth);
+                    $('#videoOverlay').css({width: '100vw', height: '520px'}); // same as panel
+                });
+                vidEle.addEventListener('mouseleave', function() {
+                    $('#videoOverlay').css({width: 0, height: 0});
+                });
+            }
+        }
     }   
 
     // Shows specified component, hiding all other components
@@ -180,19 +195,22 @@ window.onload = function() {
             for (var i = 0; i < components.length; i++) {
                 if (i != id && getDisplayValue(components[i]) != "none") {
                     components[i].style.display = "none";
-                    // If another component is a video, ensure it is paused & reset 
-                    if (components[i].nodeName.toLowerCase() == 'video') {
-                        components[i].pause();
-                        components[i].currentTime = 0;
+                    // If another component is a video, ensure it is paused & reset
+                    if (components[i].children[0].nodeName.toLowerCase() == 'video') {
+
+                        components[i].children[0].pause();
+                        components[i].children[0].currentTime = 0;
                     }
                 }
             }
 
+            // Show the desired component
             components[id].style.display = "block";
 
             // If desired component is a video, start playing
-            if (components[id].nodeName.toLowerCase() == 'video') {
-                components[id].play();
+            if (components[id].children[0].nodeName.toLowerCase() == 'video') {
+
+                components[id].children[0].play();
             }
         } 
     }
@@ -234,7 +252,7 @@ window.onload = function() {
         }
 
         // Show the desired component and hide undesired components
-        var components = document.getElementsByClassName('component');
+        var components = document.getElementsByClassName('parent');
         showThisComponent(components, desiredComponent);
     } 
 
