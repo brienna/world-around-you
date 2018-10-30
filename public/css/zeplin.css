@@ -9,7 +9,7 @@ nav {
 }
 
 /* ROWS SETUP */
-.container-fluid > .row:first-child {
+.container-fluid > .row:first-child { /* panel */
     margin-top: 56px;
     height: 520px;
 }
@@ -125,10 +125,24 @@ h2 {
     font-weight: bold;
 }
 
-p {
+p, span {
     font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
-    font-size: 16px;
+}
+
+.component:nth-child(3) {
+    height: 100%;
+}
+
+#storyText {
+    padding: 0 114px 0px 114px;
+    width: 100%;
+    text-align: left;
+    height: 250px;
+    bottom: 48px; /* same height as controls */
     color: #414141;
+    position: absolute;
+    background-color: #d8d8d8;
+    max-height: 250px;
 }
 
 i {
@@ -142,16 +156,6 @@ i {
 
 .bold {
     font-weight: bold;
-}
-
-#storyText {
-    background-color: #d8d8d8;
-    font-size: 29px;
-    padding: 50px 114px 98px 114px;
-    bottom: 0px;
-    position: absolute;
-    width: 100%;
-    text-align: left;
 }
 
 /* SLIDER */

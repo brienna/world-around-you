@@ -17,10 +17,11 @@ window.onload = function() {
             var dataUrl = 'text/' + whichStory + '.json';
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
-                    // Save story and parse first page
+                    // Save story and parse title and first page
                     currStoryData = JSON.parse(this.responseText);
                     numOfPages = Object.keys(currStoryData).length;  // -1 due to title
                     console.log('This story has ' + numOfPages + ' pages');
+                    parseTitle();
                     parsePage(currPage);
                     createSlider();
                     bindEventListeners();
@@ -35,6 +36,12 @@ window.onload = function() {
 
     var picFilepathRoot = "pictures/" + whichStory + "/" + whichStory + '_';
     var vidFilepathRoot = "videos/" + whichStory + "/" + whichStory + '_';
+
+    function parseTitle() {
+        var title = currStoryData[0].glossary[0].text;
+        var titleElement = document.getElementById('title');
+        titleElement.textContent = title;
+    }
 
     // Parse story JSON by page into components
     function parsePage(pageNum) {
@@ -74,7 +81,44 @@ window.onload = function() {
             }
         });
 
-        console.log('Done parsing page ' + pageNum);
+        // Set initial size at large so it can be resized down to fit
+        $('#storyText').css('font-size', '40px');
+        console.log('AUTOSIZING....');
+         
+    }
+
+    $.fn.resizeText = function (options) {//is getting called but is not working with left arrow...? probably cuz of display: none
+        var settings = $.extend({ maxfont: 40, minfont: 15 }, options);
+
+        var style = $('<style>').html('.nodelays ' +
+        '{ ' +
+            '-moz-transition: none !important; ' +
+            '-webkit-transition: none !important;' +
+            '-o-transition: none !important; ' +
+            'transition: none !important;' +
+        '}');
+
+        function shrink(el, fontsize, minfontsize) {
+            if (fontsize < minfontsize) return;
+
+            el.style.fontSize = fontsize + 'px';
+            console.log(el.scrollHeight + ' < ' + el.offsetHeight);
+            if (el.scrollHeight > el.offsetHeight) shrink(el, fontsize - 1, minfontsize);
+        }
+
+        $('head').append(style);
+
+        $(this).each(function(index, el) {
+            var element = $(el);
+
+            element.addClass('nodelays');
+
+            shrink(el, settings.maxfont, settings.minfont);
+
+            element.removeClass('nodelays');
+        });
+
+        style.remove();
     }
 
     /**************************** ACTIVATE NEXT/BACK ARROWS ****************************/
@@ -182,8 +226,12 @@ window.onload = function() {
         var desiredComponent = desiredId % 3; 
 
         // Make the desired page the current page 
-        currPage = desiredPage;
-        parsePage(currPage);
+        if (currPage != desiredPage) {
+            console.log('turning page');
+            currPage = desiredPage;
+            parsePage(currPage); 
+            $('#storyText').resizeText();
+        }
 
         // Show the desired component and hide undesired components
         var components = document.getElementsByClassName('component');
