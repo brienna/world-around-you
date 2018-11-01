@@ -8,6 +8,15 @@ nav {
     background-color: #fcfcfc;
 }
 
+nav > .row {
+    height: 100%;
+}
+
+nav img {
+    height: 100%;
+    padding: 10px;
+}
+
 .input-group {
     top: 34px;
     box-shadow: 0 0 8px 3px rgba(233, 233, 233, 0.98);
@@ -36,31 +45,31 @@ nav {
 }
 
 /* ROWS SETUP */
-.container-fluid > .row:first-child { /* panel */
+div.container-fluid > .row:first-child { /* panel */
     height: 520px;
 }
 
-.container-fluid > .row:first-child > div:nth-child(2) { /* make relative so controls can stay on bottom */
+div.container-fluid > .row:first-child > div:nth-child(2) { /* make relative so controls can stay on bottom */
     position: relative;
     height: 100%;
     padding: 0;
     margin: 0;
 }
 
-.container-fluid > .row:nth-child(3) {
+div.container-fluid > .row:nth-child(3) {
     background-color: rgba(201, 205, 208, 0.05);
     padding: 28px 0px;
 }
 
-.container-fluid > .row:nth-child(2) > div { /* title row*/
+div.container-fluid > .row:nth-child(2) > div { /* title row*/
     padding: 40px 0;
 }
 
-.container-fluid > .row:nth-child(4) {
+div.container-fluid > .row:nth-child(4) {
     padding: 46px 0px;
 }
 
-.container-fluid > .row:nth-child(5) {
+div.container-fluid > .row:nth-child(5) {
     margin-bottom: 52px;
 }
 
