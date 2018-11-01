@@ -67,7 +67,6 @@ window.onload = function() {
         glossary.forEach(function(phrase) {
             var timestamp = phrase.timestamp;
             var text = phrase.text;
-
             // If the phrase contains timestamp, identify as glossary word
             if (timestamp) {
                 $('<span></span>')
@@ -81,6 +80,13 @@ window.onload = function() {
                     .text(text);
             }
         });
+
+        // Add video and picture to first row of text component
+        var textComponent = document.getElementsByClassName('parent')[2]; // third parent
+        var textVid = textComponent.getElementsByTagName('video')[0];
+        var textPic = textComponent.getElementsByTagName('img')[0];
+        textVid.src = vidFilepathRoot + pageNum + '.MP4';
+        textPic.src = picFilepathRoot + pageNum + '.png';
 
         // Set initial size at large so it can be resized down to fit
         $('#storyText').css('font-size', '40px');
@@ -264,14 +270,12 @@ window.onload = function() {
             $('#storyText').resizeText();
         }
 
+        // Check if any arrow should be activated/deactivated
         checkArrows(desiredId + 1);
 
         // Show the desired component and hide undesired components
         var components = document.getElementsByClassName('parent');
         showThisComponent(components, desiredComponent);
-
-        // Check if any arrow should be disabled/activated
-        
     } 
 
     function setSliderTicks(){
