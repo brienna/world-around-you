@@ -18,6 +18,8 @@
     <script src="js/jquery-min.js"></script> 
     <!-- jQuery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+    <!-- Thumbnail Slider -->
+    <script src="js/thumbnail-slider.js" type="text/javascript"></script>
     <!-- My script -->
     <script src="js/story_script.js"></script>
 
@@ -130,29 +132,36 @@
 
         <!-- Similar stories swipe gallery -->
         <div class="row">
-            <div class="col-md-2">
-                <div class="leftArrow arrow"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
-            </div>
+            <div class="col-md-2"></div>
             <div class="col-md-8">
-                <h2>similar stories</h2>
+                <h2>up next</h2>
+                <div id="thumbnail-slider">
+                    <div class="inner">
+                        <ul>
+                            <li>
+                                <a href="/">
+                                    <div class="thumb" style="background-image:url(img/1.jpg)">
+                                    </div>
+                                </a>
+                            </li>
+                            <li><a class="thumb" href="img/2.jpg"></a></li>
+                            <li><a class="thumb" href="img/3.jpg"></a></li>
+                            <li><a class="thumb" href="img/4.jpg"></a></li>
+                            <li><a class="thumb" href="img/5.jpg"></a></li>
+                            <li><a class="thumb" href="img/6.jpg"></a></li>
+                            <li><a class="thumb" href="img/7.jpg"></a></li>
+                            <li><a class="thumb" href="img/8.jpg"></a></li>
+                            <li><a class="thumb" href="img/9.jpg"></a></li>
+                            <li><a class="thumb" href="img/10.jpg"></a></li>
+                            <li><a class="thumb" href="img/11.jpg"></a></li>
+                            <li><a class="thumb" href="img/12.jpg"></a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-2">
-                <div class="rightArrow arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-            </div>
+            <div class="col-md-2"></div>
         </div>
 
-        <!-- From this author swipe gallery -->
-        <div class="row">
-            <div class="col-md-2">
-                <div class="leftArrow arrow"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
-            </div>
-            <div class="col-md-8">
-                <h2>from Massimo V.</h2>
-            </div>
-            <div class="col-md-2">
-                <div class="rightArrow arrow"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
-            </div>
-        </div>
     </div>
 </body>
 

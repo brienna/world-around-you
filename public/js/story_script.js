@@ -289,8 +289,28 @@ window.onload = function() {
          }
     }
 
+    var thumbnailSliderOptions = {
+        sliderId: "thumbnail-slider",
+        orientation: "horizontal",
+        thumbWidth: "280px",
+        thumbHeight: "152px",
+        showMode: 1,
+        autoAdvance: false,
+        selectable: false,
+        slideInterval: 3000,
+        transitionSpeed: 1500,
+        shuffle: false,
+        startSlideIndex: 0, //0-based
+        pauseOnHover: true,
+        initSliderByCallingInitFunc: false,
+        rightGap: 0,
+        keyboardNav: true,
+        mousewheelNav: false,
+        before: null,
+        license: "mylicense"
+    };
 
-
+    var mcThumbnailSlider = new ThumbnailSlider(thumbnailSliderOptions);
 
 
 
