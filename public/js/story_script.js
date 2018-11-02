@@ -7,6 +7,8 @@ window.onload = function() {
     var currStoryData = null;
     var numOfPages = 0;
     var currPage = 0;
+    var languages = [];
+    var chosenLanguage = "";
     loadStory(whichStory);
 
     // Load JSON file for one story
@@ -19,8 +21,10 @@ window.onload = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     // Save story and parse title and first page
                     currStoryData = JSON.parse(this.responseText);
-                    numOfPages = Object.keys(currStoryData).length;  // -1 due to title
                     console.log('This story has ' + numOfPages + ' pages');
+                    languages = parseLanguageChoices();
+                    chosenLanguage = languages[0]; // placeholder, user will set later
+                    numOfPages = Object.keys(currStoryData.languages[chosenLanguage]).length;  // -1 due to title 
                     parseTitle();
                     parsePage(currPage);
                     createSlider();
@@ -35,13 +39,16 @@ window.onload = function() {
 
     /**************************** PARSE PAGE INTO HTML ELEMENTS ****************************/
 
-    var picFilepathRoot = "pictures/" + whichStory + "/" + whichStory + '_';
-    var vidFilepathRoot = "videos/" + whichStory + "/" + whichStory + '_';
-
+    // Get title from JSON file
     function parseTitle() {
-        var title = currStoryData[0].glossary[0].text;
+        var title = currStoryData["languages"][chosenLanguage][0].glossary[0].text;
         var titleElement = document.getElementById('title');
         titleElement.textContent = title;
+    }
+
+    // Get available language choices from JSON file
+    function parseLanguageChoices() {
+        return Object.keys(currStoryData.languages);
     }
 
     // Parse story JSON by page into components
@@ -50,20 +57,18 @@ window.onload = function() {
 
         // Set the picture component
         var picComponent = document.getElementsByClassName('component')[0];
-        picComponent.src = picFilepathRoot + pageNum + '.png';
-
+        picComponent.src = 'img/' + whichStory + '/' + pageNum + '.png';
         // Set the video component
         vidComponent = document.getElementsByClassName('component')[1];
-        vidComponent.src = vidFilepathRoot + pageNum + '.MP4';
+        vidComponent.src = 'videos/' + whichStory + '/' + pageNum + '.MP4';
 
-        // Set the glossary component
-        // Delete current text
+        // Set the glossary component according to chosen language, first removing current text
         storyText = document.getElementById('storyText');
         while (storyText.firstChild) {
             storyText.removeChild(storyText.firstChild);
         }
 
-        var glossary = currStoryData[pageNum].glossary;
+        var glossary = currStoryData["languages"][chosenLanguage][pageNum].glossary;
         glossary.forEach(function(phrase) {
             var timestamp = phrase.timestamp;
             var text = phrase.text;
@@ -85,8 +90,8 @@ window.onload = function() {
         var textComponent = document.getElementsByClassName('parent')[2]; // third parent
         var textVid = textComponent.getElementsByTagName('video')[0];
         var textPic = textComponent.getElementsByTagName('img')[0];
-        textVid.src = vidFilepathRoot + pageNum + '.MP4';
-        textPic.src = picFilepathRoot + pageNum + '.png';
+        textVid.src = 'videos/' + whichStory + '/' + pageNum + '.MP4';
+        textPic.src = 'img/' + whichStory + '/' + pageNum + '.png';
 
         // Set initial size at large so it can be resized down to fit
         $('#storyText').css('font-size', '40px');
@@ -128,10 +133,10 @@ window.onload = function() {
         style.remove();
     }
 
-    /**************************** ACTIVATE NEXT/BACK ARROWS ****************************/
+    /**************************** HANDLE EVENTS ****************************/
 
+    // Bind event handlers to clicks on paginating arrows
     function bindArrowListener() {
-        //var components = document.getElementsByClassName('parent');
         var arrows = document.getElementsByClassName("arrow"); 
         var leftArrow = arrows[0];
         var rightArrow = arrows[1];
@@ -189,6 +194,7 @@ window.onload = function() {
         }
     }
 
+    // Binds event handler to video hover event
     function bindVideoHoverListener() {
         var components = document.getElementsByClassName('parent');
 
@@ -241,6 +247,7 @@ window.onload = function() {
     }
 
     /**************************** SLIDER BAR ****************************/
+    
     function createSlider() {
         $("#slider").slider({
             min: 1,
@@ -278,6 +285,7 @@ window.onload = function() {
         showThisComponent(components, desiredComponent);
     } 
 
+    // Set tick marks on slider
     function setSliderTicks(){
         var $slider =  $('#slider');
         var max =  $slider.slider("option", "max");    
@@ -288,6 +296,8 @@ window.onload = function() {
             $('<span class="tickmark"></span>').css('left', (spacing * i) +  '%').appendTo($slider); 
          }
     }
+
+    /**************************** THUMBNAIL SLIDER ****************************/
 
     var thumbnailSliderOptions = {
         sliderId: "thumbnail-slider",

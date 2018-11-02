@@ -1,373 +1,456 @@
 
 {
-    "0": {
-        "glossary": [
-            {
-                "text": "Malakas and Maganda"
+    "languages": {
+        "english": {
+            "0": {
+                "glossary": [
+                    {
+                        "text": "Malakas and Maganda"
+                    }
+                ]
+            },
+            "1" : {
+                "glossary": [
+                    {
+                        "text": "When the "
+                    },
+                    {
+                        "text": "world",
+                        "timestamp": []
+                    },
+                    {
+                       "text": " first began, there was no "
+                    },
+                    {
+                        "text": "land",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ". There was only the "
+                    },
+                    {
+                        "text": "Sea",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " and the "
+                    },
+                    {
+                        "text": "Sky",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ". A huge, beautiful "
+                    },
+                    {
+                        "text": "Kite",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " (a bird similar to a hawk) flew between them."
+                    }
+                ]
+            },
+            "2": {
+                "glossary": [
+                    {
+                        "text": "One day, the "
+                    },
+                    {
+                        "text": "Kite",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " "
+                    },
+                    {
+                        "text": "grew tired",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " of flying around as there was "
+                    },
+                    {
+                        "text": "nowhere",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " to land and rest. The Kite became "
+                    },
+                    {
+                        "text": "frustrated",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " and pushed the "
+                    },
+                    {
+                        "text": "Sky",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " to get in a "
+                    },
+                    {
+                        "text": "quarrel",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " against the "
+                    },
+                    {
+                        "text": "Sea",
+                        "timestamp": []
+                    },
+                    {
+                        "text": "."
+                    }
+                ]
+            }, 
+            "3": {
+                "glossary": [
+                    {
+                        "text": "The Sky threw "
+                    },
+                    {
+                        "text": "rain",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ", "
+                    },
+                    {
+                        "text": "thunder",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ", and "
+                    },
+                    {
+                        "text": "lightning",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " that reached the Sea. The Sea rose up and threw waves and hurricanes that reached the Sky."
+                    }
+                ]
+            },
+            "4": {
+                "glossary": [
+                    {
+                        "text": "The Sky showered a large number of huge "
+                    },
+                    {
+                        "text": "boulders",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " down upon the Sea. They became the "
+                    },
+                    {
+                        "text": "islands",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " that formed the "
+                    },
+                    {
+                        "text": "Philippines",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ". These islands prevented the waters from "
+                    },
+                    {
+                        "text": "rising",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " any more by causing them to flow back and forth. This "
+                    },
+                    {
+                        "text": "created",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " the tides."
+                    }
+                ]
+            },
+            "5": {
+                "glossary": [
+                    {
+                        "text": "Afterwards",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ", the Sky ordered the Kite to "
+                    },
+                    {
+                        "text": "find",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " one of the newly-formed islands to "
+                    },
+                    {
+                        "text": "build",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " her nest, and to leave the Sea and the Sky in "
+                    },
+                    {
+                        "text": "peace",
+                        "timestamp": []
+                    },
+                    {
+                        "text": "."
+                    }
+                ]
+            },
+            "6": {
+                "glossary": [
+                    {
+                        "text": "At this same time the "
+                    },
+                    {
+                        "text": "Land Breeze",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " and the "
+                    },
+                    {
+                        "text": "Sea Breeze",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " were "
+                    },
+                    {
+                        "text": "married",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ", and they had a "
+                    },
+                    {
+                        "text": "child",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " named "
+                    },
+                    {
+                        "text": "Bamboo",
+                        "timestamp": []
+                    },
+                    {
+                        "text": "."
+                    }
+                ]
+            },
+            "7": {
+                "glossary": [
+                    {
+                        "text": "One day",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ", when Bamboo was "
+                    },
+                    {
+                        "text": "floating",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " against the sea, it struck the feet of the Kite. "
+                    },
+                    {
+                        "text": "Shocked",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " and angry that anything should strike it, the "
+                    },
+                    {
+                        "text": "bird",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " "
+                    },
+                    {
+                        "text": "pecked",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " at the bamboo hard until it split in half."
+                    }
+                ]
+            },
+            "8": {
+                "glossary": [
+                    {
+                        "text": "Out of one part came a golden-bronze colored man, named "
+                    },
+                    {
+                        "text": "Malakas",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " (Strong One) and from the other half came a similarly shaded woman, named "
+                    },
+                    {
+                        "text": "Maganda",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " (Beautiful One)."
+                    }
+                ]
+            },
+            "9": {
+                "glossary": [
+                    {
+                        "text": "All of the birds of the sky and the "
+                    },
+                    {
+                        "text": "fish",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " of the sea were called to see what should be done with these two "
+                    },
+                    {
+                        "text": "persons",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ", and the "
+                    },
+                    {
+                        "text": "animals",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " decided that they should "
+                    },
+                    {
+                        "text": "marry",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " each other."
+                    }
+                ]
+            },
+            "10": {
+                "glossary": [
+                    {
+                        "text": "Together",
+                        "timestamp": []
+                    },
+                    {
+                        "text": ", Malakas and Maganda had "
+                    },
+                    {
+                        "text": "many",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " children, and from them came all the different "
+                    },
+                    {
+                        "text": "races",
+                        "timestamp": []
+                    },
+                    {
+                        "text": " of people in the Philippines."
+                    }
+                ]
             }
-        ]
-    },
-    "1" : {
-        "glossary": [
-            {
-                "text": "When the "
+        },
+        "tagalog": {
+            "0": {
+                "glossary": [
+                    {
+                        "text": "Malakas and Maganda"
+                    }
+                ]
             },
-            {
-                "text": "world",
-                "timestamp": []
+            "1" : {
+                "glossary": [
+                    {
+                        "text": "Nang unang likhain ang mundo, ay walang lupain. Nagkaroon lamang ng dagat at kalangitan. Lumipad isang malaking at magandang saranggola (isang ibon katulad ng isang Lawin) pagitan ng mga ito."
+                    }
+                ]
             },
-            {
-               "text": " first began, there was no "
+            "2": {
+                "glossary": [
+                    {
+                        "text": "Isang araw, ang mga saranggola lumaki pagod ng lumilipad sa paligid dahil wala sa lupa at magpahinga. Ang saranggola ay naging bigo at itinulak ang kalangitan upang makakuha ng sa isang sumbong laban sa dagat."
+                    }
+                ]
             },
-            {
-                "text": "land",
-                "timestamp": []
+            "3": {
+                "glossary": [
+                    {
+                        "text": "Ang kalangitan ay itinapon ng ulan, kulog at kidlat na naabot ng dagat. Ang dagat na ito 'y nagtindig at inihagis ng mga alon at bagyo na marating ang kalangitan."
+                    }
+                ]
             },
-            {
-                "text": ". There was only the "
+            "4": {
+                "glossary": [
+                    {
+                        "text": "Naligo ng kalangitan ang isang malaking bilang ng malaking boulders pababa sa dagat. Sila ay naging mga pulo na nabuo ng mga Philippines. These islands pinigilan ito ng tubig mula pagsikat pa ng naging dahilan upang dumaloy balik. Lumikha ito ng pagtaas."
+                    }
+                ]
             },
-            {
-                "text": "Sea",
-                "timestamp": []
+            "5": {
+                "glossary": [
+                    {
+                        "text": ""
+                    }
+                ]
             },
-            {
-                "text": " and the "
+            "6": {
+                "glossary": [
+                    {
+                        "text": "Kasabay nito ang simoy ng hangin sa lupa at ang dagat simoy nagpakasal, at nagkaroon sila ng isang anak na pinangalanan ng kawayan."
+                    }
+                ]
             },
-            {
-                "text": "Sky",
-                "timestamp": []
+            "7": {
+                "glossary": [
+                    {
+                        "text": ""
+                    }
+                ]
             },
-            {
-                "text": ". A huge, beautiful "
+            "8": {
+                "glossary": [
+                    {
+                        "text": "Mula sa isang bahagi ay isang ginintuang-bronze kulay lalaking, nagngangalang Malakas (isang malakas) at mula sa isa pang kalahati ay isang gayundin shaded na babae, na nagngangalang Maganda (isang magandang)."
+                    }
+                ]
             },
-            {
-                "text": "Kite",
-                "timestamp": []
+            "9": {
+                "glossary": [
+                    {
+                        "text": "Lahat ng mga ibon ng langit at mga isda sa dagat ay tinatawag na upang makita kung ano ang dapat gawin sa mga dalawang tao, at nagpasiya ang mga hayop na dapat silang magpakasal ang isa 't isa."
+                    }
+                ]
             },
-            {
-                "text": " (a bird similar to a hawk) flew between them."
+            "10": {
+                "glossary": [
+                    {
+                        "text": "Sama-sama, Malakas at Maganda, nagkaroon ng maraming anak, at mula sa kanila ay ang lahat ng iba 't ibang lahi ng tao sa Pilipinas."
+                    }
+                ]
             }
-        ]
-    },
-    "2": {
-        "glossary": [
-            {
-                "text": "One day, the "
-            },
-            {
-                "text": "Kite",
-                "timestamp": []
-            },
-            {
-                "text": " "
-            },
-            {
-                "text": "grew tired",
-                "timestamp": []
-            },
-            {
-                "text": " of flying around as there was "
-            },
-            {
-                "text": "nowhere",
-                "timestamp": []
-            },
-            {
-                "text": " to land and rest. The Kite became "
-            },
-            {
-                "text": "frustrated",
-                "timestamp": []
-            },
-            {
-                "text": " and pushed the "
-            },
-            {
-                "text": "Sky",
-                "timestamp": []
-            },
-            {
-                "text": " to get in a "
-            },
-            {
-                "text": "quarrel",
-                "timestamp": []
-            },
-            {
-                "text": " against the "
-            },
-            {
-                "text": "Sea",
-                "timestamp": []
-            },
-            {
-                "text": "."
-            }
-        ]
-    }, 
-    "3": {
-        "glossary": [
-            {
-                "text": "The Sky threw "
-            },
-            {
-                "text": "rain",
-                "timestamp": []
-            },
-            {
-                "text": ", "
-            },
-            {
-                "text": "thunder",
-                "timestamp": []
-            },
-            {
-                "text": ", and "
-            },
-            {
-                "text": "lightning",
-                "timestamp": []
-            },
-            {
-                "text": " that reached the Sea. The Sea rose up and threw waves and hurricanes that reached the Sky."
-            }
-        ]
-    },
-    "4": {
-        "glossary": [
-            {
-                "text": "The Sky showered a large number of huge "
-            },
-            {
-                "text": "boulders",
-                "timestamp": []
-            },
-            {
-                "text": " down upon the Sea. They became the "
-            },
-            {
-                "text": "islands",
-                "timestamp": []
-            },
-            {
-                "text": " that formed the "
-            },
-            {
-                "text": "Philippines",
-                "timestamp": []
-            },
-            {
-                "text": ". These islands prevented the waters from "
-            },
-            {
-                "text": "rising",
-                "timestamp": []
-            },
-            {
-                "text": " any more by causing them to flow back and forth. This "
-            },
-            {
-                "text": "created",
-                "timestamp": []
-            },
-            {
-                "text": " the tides."
-            }
-        ]
-    },
-    "5": {
-        "glossary": [
-            {
-                "text": "Afterwards",
-                "timestamp": []
-            },
-            {
-                "text": ", the Sky ordered the Kite to "
-            },
-            {
-                "text": "find",
-                "timestamp": []
-            },
-            {
-                "text": " one of the newly-formed islands to "
-            },
-            {
-                "text": "build",
-                "timestamp": []
-            },
-            {
-                "text": " her nest, and to leave the Sea and the Sky in "
-            },
-            {
-                "text": "peace",
-                "timestamp": []
-            },
-            {
-                "text": "."
-            }
-        ]
-    },
-    "6": {
-        "glossary": [
-            {
-                "text": "At this same time the "
-            },
-            {
-                "text": "Land Breeze",
-                "timestamp": []
-            },
-            {
-                "text": " and the "
-            },
-            {
-                "text": "Sea Breeze",
-                "timestamp": []
-            },
-            {
-                "text": " were "
-            },
-            {
-                "text": "married",
-                "timestamp": []
-            },
-            {
-                "text": ", and they had a "
-            },
-            {
-                "text": "child",
-                "timestamp": []
-            },
-            {
-                "text": " named "
-            },
-            {
-                "text": "Bamboo",
-                "timestamp": []
-            },
-            {
-                "text": "."
-            }
-        ]
-    },
-    "7": {
-        "glossary": [
-            {
-                "text": "One day",
-                "timestamp": []
-            },
-            {
-                "text": ", when Bamboo was "
-            },
-            {
-                "text": "floating",
-                "timestamp": []
-            },
-            {
-                "text": " against the sea, it struck the feet of the Kite. "
-            },
-            {
-                "text": "Shocked",
-                "timestamp": []
-            },
-            {
-                "text": " and angry that anything should strike it, the "
-            },
-            {
-                "text": "bird",
-                "timestamp": []
-            },
-            {
-                "text": " "
-            },
-            {
-                "text": "pecked",
-                "timestamp": []
-            },
-            {
-                "text": " at the bamboo hard until it split in half."
-            }
-        ]
-    },
-    "8": {
-        "glossary": [
-            {
-                "text": "Out of one part came a golden-bronze colored man, named "
-            },
-            {
-                "text": "Malakas",
-                "timestamp": []
-            },
-            {
-                "text": " (Strong One) and from the other half came a similarly shaded woman, named "
-            },
-            {
-                "text": "Maganda",
-                "timestamp": []
-            },
-            {
-                "text": " (Beautiful One)."
-            }
-        ]
-    },
-    "9": {
-        "glossary": [
-            {
-                "text": "All of the birds of the sky and the "
-            },
-            {
-                "text": "fish",
-                "timestamp": []
-            },
-            {
-                "text": " of the sea were called to see what should be done with these two "
-            },
-            {
-                "text": "persons",
-                "timestamp": []
-            },
-            {
-                "text": ", and the "
-            },
-            {
-                "text": "animals",
-                "timestamp": []
-            },
-            {
-                "text": " decided that they should "
-            },
-            {
-                "text": "marry",
-                "timestamp": []
-            },
-            {
-                "text": " each other."
-            }
-        ]
-    },
-    "10": {
-        "glossary": [
-            {
-                "text": "Together",
-                "timestamp": []
-            },
-            {
-                "text": ", Malakas and Maganda had "
-            },
-            {
-                "text": "many",
-                "timestamp": []
-            },
-            {
-                "text": " children, and from them came all the different "
-            },
-            {
-                "text": "races",
-                "timestamp": []
-            },
-            {
-                "text": " of people in the Philippines."
-            }
-        ]
+        }
     }
 }
 
