@@ -60,7 +60,7 @@ window.onload = function() {
         picComponent.src = 'img/' + whichStory + '/' + pageNum + '.png';
         // Set the video component
         vidComponent = document.getElementsByClassName('component')[1];
-        vidComponent.src = 'videos/' + whichStory + '/' + pageNum + '.MP4';
+        vidComponent.src = 'videos/' + whichStory + '/' + pageNum + '.mp4';
 
         // Set the glossary component according to chosen language, first removing current text
         storyText = document.getElementById('storyText');
@@ -90,7 +90,7 @@ window.onload = function() {
         var textComponent = document.getElementsByClassName('parent')[2]; // third parent
         var textVid = textComponent.getElementsByTagName('video')[0];
         var textPic = textComponent.getElementsByTagName('img')[0];
-        textVid.src = 'videos/' + whichStory + '/' + pageNum + '.MP4';
+        textVid.src = 'videos/' + whichStory + '/' + pageNum + '.mp4';
         textPic.src = 'img/' + whichStory + '/' + pageNum + '.png';
 
         // Set initial size at large so it can be resized down to fit
