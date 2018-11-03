@@ -316,21 +316,20 @@ window.onload = function() {
                     menuItem.style.display = 'block';
                     menuItem.style.height = '100%';
                     menu.appendChild(menuItem);
+                    // Bind event listener for user click on menu item
                     $(menuItem).on('click', function() {
-                        console.log('choosing ' + this.textContent);
+                        // Get the language choice 
+                        chosenLanguage = this.textContent.trim();
+                        // Parse page again, with this language
+                        parsePage(currPage);
+                        $(menu).toggle();
                     });
                 }
-                // Show the menu
+                // Show the menu, positioning it right above controls bar
                 $(menu).toggle();
-                $(menu).css({
-                    'top': -($(menu).height())});
+                $(menu).css({'top': -($(menu).height())});
             });
         }
-    }
-
-    // Change the language
-    function changeLanguage(e) {
-
     }
 
     /**************************** THUMBNAIL SLIDER ****************************/

@@ -260,6 +260,7 @@ i {
     color: #272626;
     right: 0;
     display: none;
+    border-radius: 4px;
 }
 
 #languages div:hover {
