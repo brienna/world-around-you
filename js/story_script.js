@@ -93,14 +93,9 @@ window.onload = function() {
         var textPic = textComponent.getElementsByTagName('img')[0];
         textVid.src = 'videos/' + whichStory + '/' + pageNum + '.mp4';
         textPic.src = 'img/' + whichStory + '/' + pageNum + '.png';
-
-        // Set initial size at large so it can be resized down to fit
-        $('#storyText').css('font-size', '40px');
-        console.log('AUTOSIZING....');
-         
     }
 
-    $.fn.resizeText = function (options) {//is getting called but is not working with left arrow...? probably cuz of display: none, yep. it works with right arrow cuz 3rd component is display: block so it can be resized immediately before it disappears, but with the left arrow it is display: none so it can't be resized at all https://stackoverflow.com/questions/363276/hide-something-with-css-without-displaynone-or-javascript
+    $.fn.resizeText = function(options) {
         var settings = $.extend({ maxfont: 40, minfont: 15 }, options);
 
         var style = $('<style>').html('.nodelays ' +
@@ -112,10 +107,10 @@ window.onload = function() {
         '}');
 
         function shrink(el, fontsize, minfontsize) {
-            if (fontsize < minfontsize) return;
-
+            if (fontsize < minfontsize) {
+                return;
+            }
             el.style.fontSize = fontsize + 'px';
-            console.log(el.scrollHeight + ' < ' + el.offsetHeight);
             if (el.scrollHeight > el.offsetHeight) shrink(el, fontsize - 1, minfontsize);
         }
 
@@ -123,11 +118,8 @@ window.onload = function() {
 
         $(this).each(function(index, el) {
             var element = $(el);
-
             element.addClass('nodelays');
-
             shrink(el, settings.maxfont, settings.minfont);
-
             element.removeClass('nodelays');
         });
 
@@ -204,8 +196,6 @@ window.onload = function() {
             if (components[i].children[0].nodeName.toLowerCase() == 'video') {
                 var vidEle = components[i].children[0];
                 vidEle.addEventListener('mouseenter', function() {
-                    console.log('hovering over video');
-                    console.log(this.videoWidth + ' ' + this.offsetWidth);
                     $('#videoOverlay').css({width: '100vw', height: '520px'}); // same as panel
                 });
                 vidEle.addEventListener('mouseleave', function() {
@@ -216,7 +206,9 @@ window.onload = function() {
     }
 
     // Shows specified component, hiding all other components
-    function showThisComponent(components, id) {
+    function showThisComponent(id) {
+        var components = document.getElementsByClassName('parent');
+
         // Show the desired component, ensuring other components are hidden first
         if (getDisplayValue(components[id]) == "none") {
             for (var i = 0; i < components.length; i++) {
@@ -236,9 +228,17 @@ window.onload = function() {
 
             // If desired component is a video, start playing
             if (components[id].children[0].nodeName.toLowerCase() == 'video') {
-
                 components[id].children[0].play();
             }
+
+            // If desired component is text, make it fit
+            // Set initial size at large so it can be resized down to fit later
+            $('#storyText').css('font-size', '40px');
+            if (components[id].lastElementChild.firstElementChild == $('#storyText')[0]) {
+                console.log('resizing story text...');
+                $('#storyText').resizeText();
+            }
+            // NOTE: The text resize occurs here, immediately after the text component is made visible, since the resize function uses scrollHeight and offsetHeight which cannot be calculated if display = none
         } 
     }
 
@@ -275,15 +275,13 @@ window.onload = function() {
             console.log('turning page');
             currPage = desiredPage;
             parsePage(currPage); 
-            $('#storyText').resizeText();
         }
 
         // Check if any arrow should be activated/deactivated
         checkArrows(desiredId + 1);
 
         // Show the desired component and hide undesired components
-        var components = document.getElementsByClassName('parent');
-        showThisComponent(components, desiredComponent);
+        showThisComponent(desiredComponent);
     } 
 
     // Set tick marks on slider
@@ -318,11 +316,17 @@ window.onload = function() {
                     menu.appendChild(menuItem);
                     // Bind event listener for user click on menu item
                     $(menuItem).on('click', function() {
+                        // Hide menu
+                        $(menu).toggle();
                         // Get the language choice 
                         chosenLanguage = this.textContent.trim();
                         // Parse page again, with this language
                         parsePage(currPage);
-                        $(menu).toggle();
+                        // If current component is storyText, resize text 
+                        if ($('#storyText').css('display') != 'none') {
+                            console.log('current element is story');
+                            $('#storyText').resizeText();
+                        }
                     });
                 }
                 // Show the menu, positioning it right above controls bar
