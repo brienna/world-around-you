@@ -30,6 +30,7 @@ window.onload = function() {
                     createSlider();
                     bindArrowListener();
                     bindVideoHoverListener();
+                    bindChangeLanguage();
                 }
             };
             xmlhttp.open("GET", dataUrl);
@@ -295,6 +296,41 @@ window.onload = function() {
         for (var i = 0; i < max ; i++) {
             $('<span class="tickmark"></span>').css('left', (spacing * i) +  '%').appendTo($slider); 
          }
+    }
+
+    // Let user change language
+    function bindChangeLanguage() {
+        triggerDivs = document.getElementsByClassName('changeLang');
+        for (var i = 0; i < triggerDivs.length; i++) {
+            triggerDivs[i].addEventListener('click', function() {
+                // Get languages menu and clear it
+                var menu = document.getElementById('languages');
+                $(menu).empty();
+                // Add languages
+                for (var i in languages) {
+                    var menuItem = document.createElement('div');
+                    var text = document.createElement('p');
+                    text.textContent = languages[i];
+                    text.style.padding = '10px 20px 0px 20px';
+                    menuItem.appendChild(text);
+                    menuItem.style.display = 'block';
+                    menuItem.style.height = '100%';
+                    menu.appendChild(menuItem);
+                    $(menuItem).on('click', function() {
+                        console.log('choosing ' + this.textContent);
+                    });
+                }
+                // Show the menu
+                $(menu).toggle();
+                $(menu).css({
+                    'top': -($(menu).height())});
+            });
+        }
+    }
+
+    // Change the language
+    function changeLanguage(e) {
+
     }
 
     /**************************** THUMBNAIL SLIDER ****************************/
