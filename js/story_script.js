@@ -31,6 +31,7 @@ window.onload = function() {
                     bindArrowListener();
                     bindVideoHoverListener();
                     bindChangeLanguage();
+                    setupCarousel();
                 }
             };
             xmlhttp.open("GET", dataUrl);
@@ -336,32 +337,17 @@ window.onload = function() {
         }
     }
 
-    /**************************** THUMBNAIL SLIDER ****************************/
+    /**************************** THUMBNAIL CAROUSEL ****************************/
 
-    var thumbnailSliderOptions = {
-        sliderId: "thumbnail-slider",
-        orientation: "horizontal",
-        thumbWidth: "280px",
-        thumbHeight: "152px",
-        showMode: 1,
-        autoAdvance: false,
-        selectable: false,
-        slideInterval: 3000,
-        transitionSpeed: 1500,
-        shuffle: false,
-        startSlideIndex: 0, //0-based
-        pauseOnHover: true,
-        initSliderByCallingInitFunc: false,
-        rightGap: 0,
-        keyboardNav: true,
-        mousewheelNav: false,
-        before: null,
-        license: "mylicense"
-    };
-
-    var mcThumbnailSlider = new ThumbnailSlider(thumbnailSliderOptions);
-
-
+    function setupCarousel() {
+        $(".regular").slick({
+            dots: true,
+            infinite: true,
+            slidesToShow: 3,
+            slidesToScroll: 3
+        });
+    }
+    
 
 
 

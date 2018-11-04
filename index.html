@@ -12,14 +12,15 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <!-- jQuery UI stylesheet -->
     <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css">
+    <!-- 
     <!-- My stylesheet -->
     <link rel="stylesheet" type="text/css" href="css/zeplin.css">
     <!-- jQuery 3.3.1 -->
     <script src="js/jquery-min.js"></script> 
     <!-- jQuery UI -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-    <!-- Thumbnail Slider -->
-    <script src="js/thumbnail-slider.js" type="text/javascript"></script>
+    <!-- Thumbnail Carousel -->
+    <script src="js/slick.min.js" type="text/javascript" charset="utf-8"></script>
     <!-- My script -->
     <script src="js/story_script.js"></script>
 </head>
@@ -82,6 +83,7 @@
                             </div>
                         </div>
                     </div>
+
                     <div class="row">
                         <div class="component col-md-12" id="storyText"></div>
                     </div>
@@ -137,29 +139,57 @@
             <div class="col-md-2"></div>
             <div class="col-md-8">
                 <h2>up next</h2>
-                <div id="thumbnail-slider">
-                    <div class="inner">
-                        <ul>
-                            <li>
-                                <a href="/">
-                                    <div class="thumb" style="background-image:url(img/thumbnail_slider/1.jpg)">
-                                    </div>
-                                </a>
-                            </li>
-                            <li><a class="thumb" href="img/thumbnail_slider/2.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/3.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/4.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/5.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/6.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/7.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/8.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/9.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/10.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/11.jpg"></a></li>
-                            <li><a class="thumb" href="img/thumbnail_slider/12.jpg"></a></li>
-                        </ul>
-                    </div>
-                </div>
+                    <section id="upNextCarousel" class="regular slider">
+                        <div>
+                            <img src="img/carousel/1.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/2.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/3.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/4.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/5.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/6.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/7.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/8.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/9.jpg">
+                        </div>
+                  </section>
+
+                  <h2 id="fromCarouselTitle">from Massimo V.</h2>
+                    <section id="fromThisAuthorCarousel" class="regular slider">
+                        <div>
+                            <img src="img/carousel/1.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/2.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/3.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/4.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/5.jpg">
+                        </div>
+                        <div>
+                            <img src="img/carousel/6.jpg">
+                        </div>
+                  </section>
             </div>
             <div class="col-md-2"></div>
         </div>
