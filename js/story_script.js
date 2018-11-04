@@ -319,9 +319,21 @@ window.onload = function() {
                     menuItem.appendChild(text);
                     menuItem.style.display = 'block';
                     menuItem.style.height = '100%';
+                    // Highlight item if current chosen language
+                    if (languages[i] == chosenLanguage) {
+                        menuItem.style.fontWeight = "bold";
+                    }
                     menu.appendChild(menuItem);
                     // Bind event listener for user click on menu item
                     $(menuItem).on('click', function() {
+                        // Highlight current menu item
+                        menuItem.style.fontWeight = "bold";
+                        // Remove any highlighting from other menu items
+                        for (var j = 0; j < menu.children; j++) {
+                            if (menu.children[j].style.fontWeight == 'bold' && menu.children[j] != menuItem) {
+                                menu.children[j].style.fontWeight = 'none';
+                            }
+                        }
                         // Hide menu
                         $(menu).toggle();
                         // Get the language choice 
@@ -333,12 +345,12 @@ window.onload = function() {
                             console.log('current element is story');
                             $('#storyText').resizeText();
                         }
+
                     });
                 }
                 // Show the menu, positioning it right above controls bar
                 $(menu).toggle();
-                $(menu).css({'top': -($(menu).height())});
-            });
+                $(menu).css({'top': -($(menu).height())});            });
         }
     }
 
