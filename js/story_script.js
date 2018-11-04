@@ -254,12 +254,17 @@ window.onload = function() {
         $("#slider").slider({
             min: 1,
             max: numOfPages * 3, 
-            step: 1, 
+            step: 0.00001, // smoother 
             change: slideTo, // on manual change
             range: false,
+            animate: "slow",
             orientation: 'horizontal',
             create: function(event, ui) { // set ticks
                 setSliderTicks(event.target);
+            },
+            stop: function(event, ui) {
+                // Move handle to closest value, since steps are tiny to allow for smoother sliding
+                $('#slider').slider('value', Math.round(ui.value)); 
             }
         });
     }
@@ -292,7 +297,7 @@ window.onload = function() {
         var spacing =  100 / (max - 1);
 
         $slider.find('.tickmark').remove();
-        for (var i = 0; i < max ; i++) {
+        for (var i = 0; i < max ; i+=3) {
             $('<span class="tickmark"></span>').css('left', (spacing * i) +  '%').appendTo($slider); 
          }
     }
