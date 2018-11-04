@@ -310,12 +310,17 @@ window.onload = function() {
                 // Get languages menu and clear it
                 var menu = document.getElementById('languages');
                 $(menu).empty();
+                // If cursor leaves menu, close it
+                $('.controls').on('mouseleave', function() {
+                    $(menu).hide();
+                });
                 // Add languages
                 for (var i in languages) {
                     var menuItem = document.createElement('div');
                     var text = document.createElement('p');
                     text.textContent = languages[i];
-                    text.style.padding = '10px 20px 0px 20px';
+                    text.style.padding = '10px 20px 20px 20px';
+                    text.style.margin = '0px';
                     menuItem.appendChild(text);
                     menuItem.style.display = 'block';
                     menuItem.style.height = '100%';
@@ -325,24 +330,21 @@ window.onload = function() {
                     }
                     menu.appendChild(menuItem);
                     // Bind event listener for user click on menu item
-                    $(menuItem).on('click', function() {
-                        // Highlight current menu item
-                        menuItem.style.fontWeight = "bold";
-                        // Remove any highlighting from other menu items
-                        for (var j = 0; j < menu.children; j++) {
-                            if (menu.children[j].style.fontWeight == 'bold' && menu.children[j] != menuItem) {
-                                menu.children[j].style.fontWeight = 'none';
-                            }
+                    $(menuItem).on('click', function(e) {
+                        console.log(e.target);
+                        // Remove any highlighting all  menu items
+                        for (var j = 0; j < menu.children.length; j++) {
+                            console.log(menu.children[j]);
+                            menu.children[j].style.fontWeight = 'normal';
                         }
-                        // Hide menu
-                        $(menu).toggle();
+                        // Highlight current menu item 
+                        e.target.parentNode.style.fontWeight = 'bold';
                         // Get the language choice 
                         chosenLanguage = this.textContent.trim();
                         // Parse page again, with this language
                         parsePage(currPage);
                         // If current component is storyText, resize text 
                         if ($('#storyText').css('display') != 'none') {
-                            console.log('current element is story');
                             $('#storyText').resizeText();
                         }
 
@@ -350,7 +352,8 @@ window.onload = function() {
                 }
                 // Show the menu, positioning it right above controls bar
                 $(menu).toggle();
-                $(menu).css({'top': -($(menu).height())});            });
+                $(menu).css({'top': -($(menu).height())});            
+            });
         }
     }
 
