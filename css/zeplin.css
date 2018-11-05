@@ -10,11 +10,17 @@ nav {
 nav > .row {
     height: 100%;
 }
+nav > .row > div:nth-child(1) > img {
+    margin: 0 auto;
+}
 nav img {
     height: 100%;
     padding: 10px;
 }
-
+nav > .row > div:nth-child(3) img:hover {
+    background: rgba(233, 233, 233, 0.98);
+    cursor: pointer;
+}
 nav > .row > div:nth-child(3) > img {
     height: 50px;
     width: 50px;
@@ -182,7 +188,6 @@ div.container-fluid > .row:nth-child(5) {
 /* ARROWS */
 .arrow {
     z-index: 5;
-    height: 83px;
     width: 43px;
 }
 .leftArrow {
@@ -264,13 +269,13 @@ p, span {
     height: 40%;
 }
 
-.changeLang {
+.controlsIconParent {
     display: inline-block;
     height: 100%;
     text-align: center;
 }
 
-.changeLang:hover {
+.controlsIconParent:hover {
     opacity: 0.2;
     cursor: pointer;
 }
@@ -279,6 +284,23 @@ p, span {
     font-size: 30px;
     position: relative;
     top: calc(50% - 15px);
+}
+
+.fa-arrows-alt {
+    -ms-transform: rotate(-45deg);
+    -webkit-transform:rotate(-45deg);
+    transform: rotate(45deg);
+    font-size: 30px;
+    top: calc(50% - 15px);
+    position: relative;
+}
+
+#fullscreenTrigger > img {
+    display: none;
+    height: 30px;
+    top: calc(50% - 15px);
+    position: relative; 
+    width: 30px;
 }
 
 i {

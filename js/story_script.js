@@ -32,6 +32,7 @@ window.onload = function() {
                     bindVideoHoverListener();
                     bindChangeLanguage();
                     setupCarousel();
+                    setupFullScreen();
                 }
             };
             xmlhttp.open("GET", dataUrl);
@@ -357,7 +358,6 @@ window.onload = function() {
                         if ($('#storyText').css('display') != 'none') {
                             $('#storyText').resizeText();
                         }
-
                     });
                 }
                 // Show the menu, positioning it right above controls bar
@@ -378,9 +378,62 @@ window.onload = function() {
         });
     }
     
+    function setupFullScreen() {
+        // If browser enables Fullscreen API
+        if (document.fullscreenEnabled ||
+            document.webkitFullscreenEnabled ||
+            document.mozFullScreenEnabled ||
+            document.msFullscreenEnabled) {
 
+            // Get the full screen icon
+            var trigger = document.getElementById('fullscreenTrigger');
+            // Get full screen trigger
+            var panel = document.getElementsByClassName('panel')[0];
+            
+            // Toggle fullscreen on click of trigger
+            trigger.addEventListener('click', function() {
+                // If not full screen, go fullscreen
+                if (!document.fullscreenElement && 
+                    !document.webkitFullscreenElement &&
+                    !document.mozFullScreenElement &&
+                    !document.msFullscreenElement) {
 
+                    if (panel.requestFullscreen) {
+                        panel.requestFullscreen();
+                    } else if (panel.webkitRequestFullscreen) {
+                        panel.webkitRequestFullscreen();
+                    } else if (panel.mozRequestFullScreen) {
+                        panel.mozRequestFullScreen();
+                    } else if (panel.msRequestFullscreen) {
+                        panel.msRequestFullscreen();
+                    } else {
+                        console.log('Cannot go fullscreen!');
+                    }
+                } else {
+                    // if full screen, exit
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    } else if (document.mozCancelFullScreen) {
+                        document.mozCancelFullScreen();
+                    } else if (document.webkitExitFullscreen) {
+                        document.webkitExitFullscreen();
+                    }
+                }
+            });
 
+            // When going fullscreen or exiting fullscreen,
+            $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e) {
+                console.log('changing icon');
+                // Change trigger icon 
+                $(trigger).find('i').toggle();
+                $(trigger).find('img').toggle();
+            });
+
+        } else {
+            // If browser doesn't have the API, make only movie fullscreen
+        }
+    }
+                
 
 
 
