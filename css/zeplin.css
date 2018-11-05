@@ -345,6 +345,17 @@ i {
     margin: 0 auto;
 }
 
+#slider::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 2em;
+  top: -1em;
+  padding: 0 2em;
+  cursor: pointer;
+}
+
 .ui-slider-horizontal {
     height: 3px;
     width: 75%;
