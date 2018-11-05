@@ -197,13 +197,23 @@ window.onload = function() {
             if (components[i].children[0].nodeName.toLowerCase() == 'video') {
                 var vidEle = components[i].children[0];
                 vidEle.addEventListener('mouseenter', function() {
-                    $('#videoOverlay').css({width: '100vw', height: '520px'}); // same as panel
+                    $('#videoOverlay').css({display: 'block'});
+                    this.pause();
+                    //$('#videoOverlay').css({width: '100vw', height: '520px'}); // same as panel
                 });
                 vidEle.addEventListener('mouseleave', function() {
-                    $('#videoOverlay').css({width: 0, height: 0});
+                    $('#videoOverlay').css({display: 'none'});
+                    if (!this.ended) {
+                        this.play();
+                    }
+                    //$('#videoOverlay').css({width: 0, height: 0});
                 });
             }
         }
+
+        $('#videoOverlay > img').on('click', function() {
+            console.log('replaying');
+        });
     }
 
     // Shows specified component, hiding all other components

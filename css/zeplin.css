@@ -15,8 +15,12 @@ nav img {
     padding: 10px;
 }
 
+nav > .row > div:nth-child(3) > img {
+    height: 50px;
+    width: 50px;
+}
+
 .input-group {
-    top: 34px;
     box-shadow: 0 0 8px 3px rgba(233, 233, 233, 0.98);
 }
 
@@ -32,13 +36,18 @@ nav img {
 }
 
 .input-group-text {
-    background-color: #ffffff;
-    border: solid thin #0095ff;
+    background-color: #f5f5f5;
     border-radius: 4px;
+    border: 0px;
 }
 
 .input-group-text > i {
     color: #060606;
+}
+
+a:hover {
+    cursor: pointer;
+    font-color: blue;
 }
 
 /* ROWS SETUP */
@@ -89,12 +98,31 @@ div.container-fluid > .row:nth-child(5) {
 }
 
 #videoOverlay {
-    background-color: black;
     z-index: 15;
     position: absolute;
-    opacity: 0.6;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    height: 520px;
+    width: 100vw;
     top: 115px; /* from nav and margin-top of first row*/
     pointer-events: none; /*so mouse events pass through */
+}
+
+#videoOverlay img {
+    position: absolute;
+    z-index: 100000000;
+    opacity: 1;
+    width: 133px;
+    height: 133px;
+    left: 50%;
+    top: 50%;
+    margin: -66.5px 0 0 -66.5px; /* half the height and width */
+    display: block;
+    pointer-events: auto; /* disable parent's attribute so we can click*/
+}
+
+#videoOverlay > img:hover {
+    cursor: pointer;
 }
 
 .parent {
@@ -154,19 +182,18 @@ div.container-fluid > .row:nth-child(5) {
 /* ARROWS */
 .arrow {
     z-index: 5;
+    height: 83px;
+    width: 43px;
 }
 .leftArrow {
     float: right;
+    margin-right: 54px;
 }
 .rightArrow {
     float: left;
+    margin-left: 54px;
 }
-.fa-angle-right, .fa-angle-left {
-    color: #acabab;
-    opacity: 1.0;
-    font-size: 57.1px;
-}
-.fa-angle-left:hover, .fa-angle-right:hover {
+.leftArrow:hover, .rightArrow:hover {
     opacity: 0.2;
     cursor: pointer;
 }
