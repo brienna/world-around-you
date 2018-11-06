@@ -9,6 +9,8 @@ window.onload = function() {
     var currPage = 0;
     var languages = [];
     var chosenLanguage = "";
+    var signLanguages = ['FSL: Luzon', 'FSL: Visayas', 'FSL: Mindanao']; // placeholder for now
+    var chosenSignLanguage = "FSL: Luzon";
     loadStory(whichStory);
 
     // Load JSON file for one story
@@ -30,7 +32,7 @@ window.onload = function() {
                     createSlider();
                     bindArrowListener();
                     bindVideoHoverListener();
-                    bindChangeLanguage();
+                    bindChangeLanguages();
                     setupCarousel();
                     setupFullScreen();
                 }
@@ -314,60 +316,134 @@ window.onload = function() {
     }
 
     // Let user change language
-    function bindChangeLanguage() {
-        triggerDivs = document.getElementsByClassName('changeLang');
-        for (var i = 0; i < triggerDivs.length; i++) {
-            triggerDivs[i].addEventListener('click', function() {
-                // Get languages menu and clear it
-                var menu = document.getElementById('languages');
-                $(menu).empty();
-                // If cursor leaves menu, close it
-                $('.controls').on('mouseleave', function() {
-                    $(menu).hide();
-                });
-                // Add languages
-                for (var i in languages) {
-                    var menuItem = document.createElement('div');
-                    var text = document.createElement('p');
-                    text.textContent = languages[i];
-                    text.style.padding = '10px 20px 20px 20px';
-                    text.style.margin = '0px';
-                    menuItem.appendChild(text);
-                    menuItem.style.display = 'block';
-                    menuItem.style.height = '100%';
-                    // Highlight item if current chosen language
-                    if (languages[i] == chosenLanguage) {
-                        menuItem.style.fontWeight = "bold";
-                    }
-                    menu.appendChild(menuItem);
-                    // Bind event listener for user click on menu item
-                    $(menuItem).on('click', function(e) {
-                        console.log(e.target);
-                        // Remove any highlighting all  menu items
-                        for (var j = 0; j < menu.children.length; j++) {
-                            console.log(menu.children[j]);
-                            menu.children[j].style.fontWeight = 'normal';
-                        }
-                        // Highlight current menu item 
-                        e.target.parentNode.style.fontWeight = 'bold';
-                        // Get the language choice 
-                        chosenLanguage = this.textContent.trim();
-                        // Parse page again, with this language
-                        parsePage(currPage);
-                        // If current component is storyText, resize text 
-                        if ($('#storyText').css('display') != 'none') {
-                            $('#storyText').resizeText();
-                        }
-                    });
-                }
-                // Show the menu, positioning it above trigger icon
-                $(menu).toggle();
-                $(menu).css({
-                    'top': -($(menu).height()),
-                    'left': 0
-                });         
+    function bindChangeLanguages() {
+        changeTextLanguage();
+        changeSignLanguage();
+    }
+
+    function changeTextLanguage() {
+        var triggerDiv = document.getElementById('changeTextLang');
+        triggerDiv.addEventListener('click', function(e) {
+            // Get languages menu 
+            var menu = document.getElementById('languages');
+            // If it's already showing, hide and exit function
+            if ($(menu).css('display') != 'none' && $(menu).attr('type') == 'text') {
+                console.log('menu is already text menu, so closing it');
+                $(menu).attr('type', '');
+                $(menu).hide();
+                return;
+            }
+            // Clear it
+            $(menu).empty();
+            // If cursor leaves menu, close it
+            $('.controls').on('mouseleave', function() {
+                $(menu).hide();
             });
-        }
+            // Add languages to menu
+            $(menu).attr('type', 'text');
+            for (var i in languages) {
+                var menuItem = document.createElement('div');
+                var text = document.createElement('p');
+                text.textContent = languages[i];
+                text.style.padding = '10px 20px 20px 20px';
+                text.style.margin = '0px';
+                menuItem.appendChild(text);
+                menuItem.style.display = 'block';
+                menuItem.style.height = '100%';
+                // Highlight item if current chosen language
+                if (languages[i] == chosenLanguage) {
+                    menuItem.style.fontWeight = "bold";
+                }
+                menu.appendChild(menuItem);
+                // Bind event listener for user click on menu item
+                $(menuItem).on('click', function(e) {
+                    console.log(e.target);
+                    // Remove any highlighting all  menu items
+                    for (var j = 0; j < menu.children.length; j++) {
+                        console.log(menu.children[j]);
+                        menu.children[j].style.fontWeight = 'normal';
+                    }
+                    // Highlight current menu item 
+                    e.target.parentNode.style.fontWeight = 'bold';
+                    // Get the language choice 
+                    chosenLanguage = this.textContent.trim();
+                    // Parse page again, with this language
+                    parsePage(currPage);
+                    // If current component is storyText, resize text 
+                    if ($('#storyText').css('display') != 'none') {
+                        $('#storyText').resizeText();
+                    }
+                });
+            }
+            // Show the menu, positioning it above trigger icon
+            $(menu).show();
+            $(menu).css({
+                'top': -($(menu).height()),
+                'left': 0
+            });         
+        });
+    }
+
+    function changeSignLanguage() {
+        var triggerDiv = document.getElementById('changeSignLang');
+        triggerDiv.addEventListener('click', function(e) {
+            // Get languages menu 
+            var menu = document.getElementById('languages');
+            // If it's already showing, hide and exit function
+            if ($(menu).css('display') != 'none' && $(menu).attr('type') == 'sign') {
+                console.log('menu is already sign menu, so closing it');
+                $(menu).attr('type', '');
+                $(menu).hide();
+                return;
+            }
+            // Clear it
+            $(menu).empty();
+            // If cursor leaves menu, close it
+            $('.controls').on('mouseleave', function() {
+                $(menu).hide();
+            });
+            // Add sign languages to menu
+            $(menu).attr('type', 'sign');
+            for (var i in signLanguages) {
+                var menuItem = document.createElement('div');
+                var text = document.createElement('p');
+                text.textContent = signLanguages[i];
+                text.style.padding = '10px 20px 20px 20px';
+                text.style.margin = '0px';
+                menuItem.appendChild(text);
+                menuItem.style.display = 'block';
+                menuItem.style.height = '100%';
+                // Highlight item if current chosen language
+                if (signLanguages[i] == chosenSignLanguage) {
+                    menuItem.style.fontWeight = "bold";
+                }
+                menu.appendChild(menuItem);
+                // Bind event listener for user click on menu item
+                $(menuItem).on('click', function(e) {
+                    console.log(e.target);
+                    // Remove any highlighting all menu items
+                    for (var j = 0; j < menu.children.length; j++) {
+                        console.log(menu.children[j]);
+                        menu.children[j].style.fontWeight = 'normal';
+                    }
+                    // Highlight current menu item 
+                    e.target.parentNode.style.fontWeight = 'bold';
+                    // Get the language choice 
+                    chosenSignLanguage = this.textContent.trim();
+                    console.log('Changing sign language to ' + chosenSignLanguage);
+                });
+            }
+
+            // Show the menu, positioning it above trigger icon
+            $(menu).show();
+            $(menu).css({
+                'top': -($(menu).height()),
+                'left': '15%'
+            });  
+        });
+
+ 
+    
     }
 
     /**************************** THUMBNAIL CAROUSEL ****************************/
