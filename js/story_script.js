@@ -35,6 +35,7 @@ window.onload = function() {
                     bindChangeLanguages();
                     setupCarousel();
                     setupFullScreen();
+                    bindMenuButtons();
                 }
             };
             xmlhttp.open("GET", dataUrl);
@@ -73,6 +74,14 @@ window.onload = function() {
             storyText.removeChild(storyText.firstChild);
         }
 
+        // Add video and picture to first row of text component
+        var textComponent = document.getElementsByClassName('parent')[2]; // third parent
+        var textVid = textComponent.getElementsByTagName('video')[0];
+        var textPic = textComponent.getElementsByTagName('img')[0];
+        textVid.src = 'videos/' + whichStory + '/' + pageNum + '.mp4';
+        textPic.src = 'img/' + whichStory + '/' + pageNum + '.png';
+
+        // Add glossary
         var glossary = currStoryData["languages"][chosenLanguage][pageNum].glossary;
         glossary.forEach(function(phrase) {
             var timestamp = phrase.timestamp;
@@ -83,6 +92,11 @@ window.onload = function() {
                     .addClass('glossary')
                     .appendTo($(storyText))
                     .text(text) // need to fix so that it sets these time stamp onto the trigger & featherlight can read
+                    .on('click', function() {
+                        console.log('clicked on ' + text);
+                        // Change out picture
+                        textPic.src = 'img/glossary/' + text + '.png';
+                    });
             } else {
                 // If the phrase contains no time stamp, add it as plain text
                 $('<span></span>')
@@ -90,13 +104,6 @@ window.onload = function() {
                     .text(text);
             }
         });
-
-        // Add video and picture to first row of text component
-        var textComponent = document.getElementsByClassName('parent')[2]; // third parent
-        var textVid = textComponent.getElementsByTagName('video')[0];
-        var textPic = textComponent.getElementsByTagName('img')[0];
-        textVid.src = 'videos/' + whichStory + '/' + pageNum + '.mp4';
-        textPic.src = 'img/' + whichStory + '/' + pageNum + '.png';
     }
 
     $.fn.resizeText = function(options) {
@@ -131,6 +138,36 @@ window.onload = function() {
     }
 
     /**************************** HANDLE EVENTS ****************************/
+
+    // Bind event handler to menu buttons to show text 
+    function bindMenuButtons() {
+        // Get all menu buttons
+        var menuBtns = document.getElementsByClassName('menuBtn');
+        // Get the description element
+        var description = document.getElementById('btnDesc');
+        // For each menu button
+        for (var i = 0; i < menuBtns.length; i++) {
+            // Add an event handler
+            menuBtns[i].addEventListener('mouseover', function(e) {
+                // Get data for the menu element to use as description
+                description.textContent = this.getAttribute('data');
+                // Position & show description
+                description.style.visibility = 'visible'; // quickly show then...
+                $(description).css({
+                    'left': this.offsetLeft-(description.offsetWidth-this.offsetWidth)/2,
+                    'opacity': 1
+                });
+            }); 
+            menuBtns[i].addEventListener('mouseleave', function() {
+                // Hide btn description
+                $(description).css({
+                    'visibility': 'hidden',
+                    'left': 0,
+                    'opacity': 0
+                });
+            })
+        }
+    }
 
     // Bind event handlers to clicks on paginating arrows
     function bindArrowListener() {
@@ -440,10 +477,7 @@ window.onload = function() {
                 'top': -($(menu).height()),
                 'left': '15%'
             });  
-        });
-
- 
-    
+        });    
     }
 
     /**************************** THUMBNAIL CAROUSEL ****************************/
