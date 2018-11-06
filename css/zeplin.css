@@ -271,8 +271,12 @@ p, span {
 
 .controlsIconParent {
     display: inline-block;
-    height: 100%;
+    margin: 0 auto;
     text-align: center;
+}
+
+.controlsIconParent img {
+    height: 30px;
 }
 
 .controlsIconParent:hover {
@@ -283,7 +287,6 @@ p, span {
 .fa-sign-language {
     font-size: 30px;
     position: relative;
-    top: calc(50% - 15px);
 }
 
 .fa-arrows-alt {
@@ -291,7 +294,6 @@ p, span {
     -webkit-transform:rotate(-45deg);
     transform: rotate(45deg);
     font-size: 30px;
-    top: calc(50% - 15px);
     position: relative;
 }
 
@@ -305,14 +307,12 @@ p, span {
 
 i {
     color: #ededed;
-    padding-right: 10px;
 }
 
 #languages {
     position: absolute;
     background: #343232;
     color: #ededed;
-    right: 0;
     display: none;
     border-radius: 4px;
 }
@@ -343,6 +343,7 @@ i {
 /* SLIDER */
 #slider {
     margin: 0 auto;
+    margin-left: 15px;
 }
 
 #slider::after {
@@ -358,7 +359,7 @@ i {
 
 .ui-slider-horizontal {
     height: 3px;
-    width: 75%;
+    width: 100%;
 }
 
 .ui-slider {

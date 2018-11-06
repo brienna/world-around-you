@@ -360,9 +360,12 @@ window.onload = function() {
                         }
                     });
                 }
-                // Show the menu, positioning it right above controls bar
+                // Show the menu, positioning it above trigger icon
                 $(menu).toggle();
-                $(menu).css({'top': -($(menu).height())});            
+                $(menu).css({
+                    'top': -($(menu).height()),
+                    'left': 0
+                });         
             });
         }
     }
