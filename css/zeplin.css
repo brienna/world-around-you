@@ -130,9 +130,46 @@ div.container-fluid > .row:nth-child(3) {
     padding: 28px 0px;
 }
 
+/* TITLE ROW */
 div.container-fluid > .row:nth-child(2) > div { /* title row*/
     padding: 40px 0;
 }
+.titleIcons img {
+    height: 15px;
+}
+.titleIcons span {
+    padding-left: 5px;
+}
+.titleIcons > div {
+    width: 100%;
+    padding-right: 0;
+}
+
+.titleIcons > div > div {
+    display: inline-block;
+    font-size: 12px;
+}
+.titleIcons > div:nth-child(2) div:hover,
+.titleIcons > div:nth-child(3) div:hover {
+    cursor: pointer;
+}
+.titleIcons > div:nth-child(2) {
+    text-align: center;
+    padding-left: 0;
+}
+.titleIcons > div:nth-child(2) div,
+.titleIcons > div:nth-child(3) div {
+    padding: 2px 7px 2px 7px; 
+    border-radius: 4px;
+    box-shadow: 0 1px 18px 0 rgba(248, 248, 248, 0.5);
+    border: solid 1px #0095ff;
+    margin-right: 5px;
+}
+.titleIcons > div:nth-child(1),
+.titleIcons > div:nth-child(2) {
+    border-right: solid 1px #cfcfcf;
+}
+
 
 div.container-fluid > .row:nth-child(4) {
     padding: 46px 0px;

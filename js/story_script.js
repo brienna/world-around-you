@@ -150,7 +150,7 @@ window.onload = function() {
             // Add an event handler
             menuBtns[i].addEventListener('mouseenter', function(e) {
                 thisBtn = this;
-                // Delay showing description by 1 second (if user is not sure, they will hover longer)
+                // Delay showing description by 1/2 second (if user is not sure, they will hover longer)
                 timerToWaitForUser = window.setTimeout(function(){
                     // Get data for the menu element to use as description
                     description.textContent = thisBtn.getAttribute('data');
@@ -160,8 +160,8 @@ window.onload = function() {
                         'left': thisBtn.offsetLeft-(description.offsetWidth-thisBtn.offsetWidth)/2,
                         'opacity': 1
                     });
-                }, 1000);
-            }); 
+                }, 500);
+            });
             menuBtns[i].addEventListener('mouseleave', function() {
                 // Clear timeout
                 window.clearTimeout(timerToWaitForUser);
