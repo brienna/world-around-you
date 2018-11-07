@@ -32,11 +32,11 @@ nav > .row > div:nth-child(3) {
     padding: 2.25% 3.5% 2.25% 3.5%;
     margin: 0 3.5% 0 3.5%;
     padding-left: 0;
+    border-radius: 50%;
     padding-right: 0;
 }
-nav > .row > div:nth-child(3) > div:hover {
+nav > .row > div:nth-child(3) > .menuBtn:hover {
     background-color: rgba(233, 233, 233, 0.98);
-    border-radius: 50%;
     cursor: pointer;
 }
 nav > .row > div:nth-child(3) img {
@@ -48,7 +48,7 @@ nav > .row > div:nth-child(3) img {
     padding: 0;
     opacity: 0;
     font-size: 10px;
-    transition: visibility 0s, opacity 0.2s linear;
+    transition: visibility 0s, opacity 0.2s ease-in-out;
     padding: 3px 10px 3px 10px;
     display: inline-block;
     background-color: rgba(233, 233, 233, 0.98);
