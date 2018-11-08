@@ -16,14 +16,12 @@ window.onload = function() {
     // Load JSON file for one story
     function loadStory(storyId) {
         if (window.XMLHttpRequest) {
-            console.log("Loading text for " + storyId + "...");
             var xmlhttp = new XMLHttpRequest();
             var dataUrl = 'text/' + whichStory + '.json';
             xmlhttp.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {
                     // Save story and parse title and first page
                     currStoryData = JSON.parse(this.responseText);
-                    console.log('This story has ' + numOfPages + ' pages');
                     languages = parseLanguageChoices();
                     chosenLanguage = languages[0]; // placeholder, user will set later
                     numOfPages = Object.keys(currStoryData.languages[chosenLanguage]).length;  // -1 due to title 
@@ -59,14 +57,14 @@ window.onload = function() {
 
     // Parse story JSON by page into components
     function parsePage(pageNum) {
-        console.log('Parsing page ' + pageNum + ' of ' + whichStory);
-
         // Set the picture component
         var picComponent = document.getElementsByClassName('component')[0];
         picComponent.src = 'img/' + whichStory + '/' + pageNum + '.png';
-        // Set the video component
+        // Set the video component according to language
+        var chosenSignLanguageFormatted = chosenSignLanguage.replace(": ", "_").toLowerCase();
+        var vidPath = 'videos/' + whichStory + '/' + chosenSignLanguageFormatted + '/' + pageNum + '.mp4';
         vidComponent = document.getElementsByClassName('component')[1];
-        vidComponent.src = 'videos/' + whichStory + '/' + pageNum + '.mp4';
+        vidComponent.src = vidPath;
 
         // Set the glossary component according to chosen language, first removing current text
         storyText = document.getElementById('storyText');
@@ -79,7 +77,7 @@ window.onload = function() {
         var textVid = textComponent.getElementsByTagName('video')[0];
         var textPic = textComponent.getElementsByTagName('img')[0];
         textPicPath = 'img/' + whichStory + '/' + pageNum + '.png';
-        textVid.src = 'videos/' + whichStory + '/' + pageNum + '.mp4';
+        textVid.src = vidPath;
         textPic.src = textPicPath;
 
         // Add glossary
@@ -94,7 +92,6 @@ window.onload = function() {
                     .appendTo($(storyText))
                     .text(text) // need to fix so that it sets these time stamp onto the trigger & featherlight can read
                     .on('click', function() {
-                        console.log('clicked on ' + text);
                         // Change out picture
                         textPic.src = 'img/glossary/' + text.toLowerCase() + '.png';
                         // Loop video if timestamp is provided
@@ -227,7 +224,6 @@ window.onload = function() {
         rightArrow.addEventListener('click', function() {
             var currComponent = ($('#slider').slider('value') - 1) % 3;
             var nextIndex = (currPage * 3) + currComponent + 2;
-            console.log('on page ' + currPage + ' and component ' + nextIndex);
             $('#slider').slider('value', nextIndex); // (slider has change event handler that will show/hide correct components/arrows)
         }); 
 
@@ -235,7 +231,6 @@ window.onload = function() {
         leftArrow.addEventListener('click', function() {
             var currComponent = ($('#slider').slider('value') - 1) % 3; 
             var lastIndex = (currPage * 3) + currComponent;
-            console.log('on page ' + currPage + ' and component ' + currComponent);
             $('#slider').slider('value', lastIndex); // (slider has change event handler that will show/hide correct components/arrows)
         });
     }
@@ -279,10 +274,8 @@ window.onload = function() {
 
         // When hovering over video element, show overlay
         vidEle.addEventListener('mouseenter', function() {
-            console.log($(this).parent().height());
             // Show video overlay if component has been told to listen for mouseenter
             if (!this.classList.contains('ignore-mouseenter')) {
-                console.log('showing overlay');
                 $('#videoOverlay').css({
                     display: 'block',
                     height: $(this).parent().height()
@@ -295,7 +288,6 @@ window.onload = function() {
         // When mouse leaves video overlay
         $('#videoOverlay').on('mouseleave', function() {
             // Hide video overlay
-
             $('#videoOverlay').css({
                 display: 'none'
             });
@@ -315,7 +307,6 @@ window.onload = function() {
             // Tell component to ignore mouseenter event, otherwise 
             // it will pop up the overlay right away again
             vidEle.classList.add('ignore-mouseenter');
-            console.log('replaying');
             $('#videoOverlay').css({
                 display: 'none'
             });
@@ -354,7 +345,6 @@ window.onload = function() {
             // Set initial size at large so it can be resized down to fit later
             $('#storyText').css('font-size', '40px');
             if (components[id].lastElementChild.firstElementChild == $('#storyText')[0]) {
-                console.log('resizing story text...');
                 $('#storyText').resizeText();
             }
             // NOTE: The text resize occurs here, immediately after the text component is made visible, since the resize function uses scrollHeight and offsetHeight which cannot be calculated if display = none
@@ -396,7 +386,6 @@ window.onload = function() {
 
         // Make the desired page the current page 
         if (currPage != desiredPage) {
-            console.log('turning page');
             currPage = desiredPage;
             parsePage(currPage); 
         }
@@ -433,7 +422,6 @@ window.onload = function() {
             var menu = document.getElementById('languages');
             // If it's already showing, hide and exit function
             if ($(menu).css('display') != 'none' && $(menu).attr('type') == 'text') {
-                console.log('menu is already text menu, so closing it');
                 $(menu).attr('type', '');
                 $(menu).hide();
                 return;
@@ -462,10 +450,8 @@ window.onload = function() {
                 menu.appendChild(menuItem);
                 // Bind event listener for user click on menu item
                 $(menuItem).on('click', function(e) {
-                    console.log(e.target);
                     // Remove any highlighting all  menu items
                     for (var j = 0; j < menu.children.length; j++) {
-                        console.log(menu.children[j]);
                         menu.children[j].style.fontWeight = 'normal';
                     }
                     // Highlight current menu item 
@@ -496,17 +482,18 @@ window.onload = function() {
             var menu = document.getElementById('languages');
             // If it's already showing, hide and exit function
             if ($(menu).css('display') != 'none' && $(menu).attr('type') == 'sign') {
-                console.log('menu is already sign menu, so closing it');
                 $(menu).attr('type', '');
                 $(menu).hide();
                 return;
             }
+
             // Clear it
             $(menu).empty();
             // If cursor leaves menu, close it
             $('.controls').on('mouseleave', function() {
                 $(menu).hide();
             });
+
             // Add sign languages to menu
             $(menu).attr('type', 'sign');
             for (var i in signLanguages) {
@@ -518,24 +505,32 @@ window.onload = function() {
                 menuItem.appendChild(text);
                 menuItem.style.display = 'block';
                 menuItem.style.height = '100%';
+
                 // Highlight item if current chosen language
                 if (signLanguages[i] == chosenSignLanguage) {
                     menuItem.style.fontWeight = "bold";
                 }
+
                 menu.appendChild(menuItem);
+
                 // Bind event listener for user click on menu item
                 $(menuItem).on('click', function(e) {
-                    console.log(e.target);
                     // Remove any highlighting all menu items
                     for (var j = 0; j < menu.children.length; j++) {
-                        console.log(menu.children[j]);
                         menu.children[j].style.fontWeight = 'normal';
                     }
                     // Highlight current menu item 
                     e.target.parentNode.style.fontWeight = 'bold';
                     // Get the language choice 
                     chosenSignLanguage = this.textContent.trim();
-                    console.log('Changing sign language to ' + chosenSignLanguage);
+                    // Parse page again for the new sign language
+                    parsePage(currPage);
+                    // If current component is video, start it
+                    var mainVid = document.getElementById('mainVid');
+                    if (mainVid.parentNode.style.display != 'none') {
+
+                        mainVid.play();
+                    }
                 });
             }
 
@@ -588,7 +583,6 @@ window.onload = function() {
                     } else if (panel.msRequestFullscreen) {
                         panel.msRequestFullscreen();
                     } else {
-                        console.log('Cannot go fullscreen!');
                     }
                 } else {
                     // if full screen, exit
@@ -604,7 +598,6 @@ window.onload = function() {
 
             // When going fullscreen or exiting fullscreen,
             $(document).on('webkitfullscreenchange mozfullscreenchange fullscreenchange', function(e) {
-                console.log('changing icon');
                 // Change trigger icon 
                 $(trigger).find('i').toggle();
                 $(trigger).find('img').toggle();
@@ -614,44 +607,5 @@ window.onload = function() {
             // If browser doesn't have the API, make only movie fullscreen
         }
     }
-                
-
-
-
-    /**************************** GLOSSARY (UNUSED RIGHT NOW) ****************************/
-
-    // Show featherlight if user clicks on a glossary word
-    function playVideoInterval2(glossaryVid, start, end) {
-        //var glossaryVid = document.getElementsByClassName('glossaryVid')[1];
-        glossaryVid.setAttribute('start', start);
-        glossaryVid.setAttribute('end', end);
-        $(glossaryVid).data('loop', true);
-        glossaryVid.setAttribute('currentTime', $(glossaryVid).attr('start'));
-        //$(glossaryVid).on('timeupdate', loop);
-        $(glossaryVid)[0].play();
-        console.log($(glossaryVid)[0]);
-
-        function loop() {
-            if ($(this).attr('currentTime') >= $(glossaryVid).attr('end') && $(glossaryVid).data('loop')) {
-                $(glossaryVid).attr('currentTime', $(glossaryVid).attr('start'));
-            }
-            console.log(glossaryVid);
-            glossaryVid.setAttribute('start', start);
-            glossaryVid.setAttribute('end', end);
-            $(glossaryVid).data('loop', true);
-            glossaryVid.currentTime = $(glossaryVid).attr('start');
-            glossaryVid.addEventListener('timeupdate', loop);
-            console.log(glossaryVid.currentTime);
-            glossaryVid.play();
-
-            function loop() {
-                console.log('playing loop');
-                console.log(this.currentTime);
-                if (this.currentTime >= $(glossaryVid).attr('end') && $(glossaryVid).data('loop')) {
-                    glossaryVid.currentTime = $(glossaryVid).attr('start');
-                }
-            }
-        }
-    } 
 
 }
