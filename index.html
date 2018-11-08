@@ -69,11 +69,14 @@
 
                 <!-- Video -->
                 <div class="parent">
-                    <video class="component">
+                    <video id="mainVid" class="component">
                         <source src="" type="video/mp4">
                         Your browser does not support HTML5 video.
                         <!-- Add custom seek bar https://stackoverflow.com/questions/41953604/html5-video-custom-additional-seek-bar -->
                     </video>
+                    <div id="videoOverlay">
+                        <img src="img/icons/replay.png"/>
+                    </div>
                 </div>
 
                 <!-- Glossary -->
@@ -119,8 +122,6 @@
             <div class="col-md-2 col-xs-2">
                 <img class="rightArrow arrow" src="img/icons/next.png"/>
             </div>
-
-            <div id="videoOverlay"><div><img src="img/icons/replay.png"/></div></div>
         </div>
 
         <!-- Title and little bits of info -->

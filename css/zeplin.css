@@ -211,10 +211,8 @@ body > .row:nth-child(2) {
     position: absolute;
     background: rgba(0, 0, 0, 0.6);
     display: none;
-    height: 520px;
-    width: 100vw;
-    top: 115px; /* from nav and margin-top of first row*/
-    pointer-events: none; /*so mouse events pass through */
+    width: 100%;
+    top: 0;
 }
 
 #videoOverlay img {
@@ -227,7 +225,6 @@ body > .row:nth-child(2) {
     top: 50%;
     margin: -66.5px 0 0 -66.5px; /* half the height and width */
     display: block;
-    pointer-events: auto; /* disable parent's attribute so we can click*/
 }
 
 #videoOverlay > img:hover {

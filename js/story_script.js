@@ -275,29 +275,52 @@ window.onload = function() {
 
     // Binds event handler to video hover event
     function bindVideoHoverListener() {
-        var components = document.getElementsByClassName('parent');
+        var vidEle = document.getElementById('mainVid');
 
         // When hovering over video element, show overlay
-        for (var i = 0; i < components.length; i++) {
-            if (components[i].children[0].nodeName.toLowerCase() == 'video') {
-                var vidEle = components[i].children[0];
-                vidEle.addEventListener('mouseenter', function() {
-                    $('#videoOverlay').css({display: 'block'});
-                    this.pause();
-                    //$('#videoOverlay').css({width: '100vw', height: '520px'}); // same as panel
+        vidEle.addEventListener('mouseenter', function() {
+            console.log($(this).parent().height());
+            // Show video overlay if component has been told to listen for mouseenter
+            if (!this.classList.contains('ignore-mouseenter')) {
+                console.log('showing overlay');
+                $('#videoOverlay').css({
+                    display: 'block',
+                    height: $(this).parent().height()
                 });
-                vidEle.addEventListener('mouseleave', function() {
-                    $('#videoOverlay').css({display: 'none'});
-                    if (!this.ended) {
-                        this.play();
-                    }
-                    //$('#videoOverlay').css({width: 0, height: 0});
-                });
+                // Pause video
+                this.pause();
             }
-        }
+        });
 
-        $('#videoOverlay > img').on('click', function() {
+        // When mouse leaves video overlay
+        $('#videoOverlay').on('mouseleave', function() {
+            // Hide video overlay
+
+            $('#videoOverlay').css({
+                display: 'none'
+            });
+            // Resume video
+            if (!vidEle.ended) {
+                vidEle.play();
+            }
+        });
+
+        $(vidEle).parent().on('mouseleave', function() {
+            // Tell component to listen for mouseenter event again
+            vidEle.classList.remove('ignore-mouseenter');
+        });
+        
+        // When click replay button
+        $('#videoOverlay img').on('click', function() {
+            // Tell component to ignore mouseenter event, otherwise 
+            // it will pop up the overlay right away again
+            vidEle.classList.add('ignore-mouseenter');
             console.log('replaying');
+            $('#videoOverlay').css({
+                display: 'none'
+            });
+            // Restart video
+            vidEle.currentTime = 0;
         });
     }
 
