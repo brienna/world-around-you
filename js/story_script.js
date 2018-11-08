@@ -78,8 +78,9 @@ window.onload = function() {
         var textComponent = document.getElementsByClassName('parent')[2]; // third parent
         var textVid = textComponent.getElementsByTagName('video')[0];
         var textPic = textComponent.getElementsByTagName('img')[0];
+        textPicPath = 'img/' + whichStory + '/' + pageNum + '.png';
         textVid.src = 'videos/' + whichStory + '/' + pageNum + '.mp4';
-        textPic.src = 'img/' + whichStory + '/' + pageNum + '.png';
+        textPic.src = textPicPath;
 
         // Add glossary
         var glossary = currStoryData["languages"][chosenLanguage][pageNum].glossary;
@@ -95,7 +96,11 @@ window.onload = function() {
                     .on('click', function() {
                         console.log('clicked on ' + text);
                         // Change out picture
-                        textPic.src = 'img/glossary/' + text + '.png';
+                        textPic.src = 'img/glossary/' + text.toLowerCase() + '.png';
+                        // Loop video if timestamp is provided
+                        if (timestamp.length > 0) {
+                            playVideoInterval(timestamp[0], timestamp[1]);
+                        }
                     });
             } else {
                 // If the phrase contains no time stamp, add it as plain text
@@ -104,6 +109,41 @@ window.onload = function() {
                     .text(text);
             }
         });
+
+        // Set event listener to component so that if user clicks anywhere and it is not glossary word, the video will stop looping
+        $('.panel').on('click', function(e) {
+            if (!e.target.classList.contains('glossary')) {
+                // If video is playing, pause it and reset
+                if (!$('#glossaryVid')[0].paused) {
+                    $('#glossaryVid')[0].pause();
+                    $('#glossaryVid')[0].currentTime = 0;
+                }
+                
+                // If picture is a glossary pic, return it to story pic
+                if (textPic.src != textPicPath) {
+                    textPic.src = textPicPath;
+                }
+            }
+        })
+    }
+
+    function playVideoInterval(start, end) {
+        video = document.getElementById('glossaryVid');
+
+        $(video).attr({
+            start: start,
+            end: end
+        });
+        $(video).data('loop', true);
+        video.currentTime = $(video).attr('start');
+        video.addEventListener('timeupdate', loop);
+        video.play();
+
+        function loop() {
+            if (this.currentTime >= $(video).attr('end') && $(video).data('loop')) {
+                video.currentTime = $(video).attr('start');
+            }
+        }
     }
 
     $.fn.resizeText = function(options) {
@@ -558,7 +598,7 @@ window.onload = function() {
     /**************************** GLOSSARY (UNUSED RIGHT NOW) ****************************/
 
     // Show featherlight if user clicks on a glossary word
-    function playVideoInterval(glossaryVid, start, end) {
+    function playVideoInterval2(glossaryVid, start, end) {
         //var glossaryVid = document.getElementsByClassName('glossaryVid')[1];
         glossaryVid.setAttribute('start', start);
         glossaryVid.setAttribute('end', end);

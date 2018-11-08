@@ -51,10 +51,10 @@ nav > .row > div:nth-child(3) img {
     transition: visibility 0s, opacity 0.2s ease-in-out;
     padding: 3px 10px 3px 10px;
     display: inline-block;
-    background-color: rgba(233, 233, 233, 0.98);
     height: auto;
     font-weight: bold;
     width: auto;
+    color: #272626;;
     border-radius: 4px;
     top: 100%;
     visibility: hidden;
@@ -137,6 +137,10 @@ div.container-fluid > .row:nth-child(2) > div { /* title row*/
 .titleIcons img {
     height: 15px;
 }
+.icon {
+    height: 20px;
+    padding-right: 10px;
+}
 .titleIcons span {
     padding-left: 5px;
 }
@@ -170,13 +174,17 @@ div.container-fluid > .row:nth-child(2) > div { /* title row*/
     border-right: solid 1px #cfcfcf;
 }
 
-
-div.container-fluid > .row:nth-child(4) {
-    padding: 46px 0px;
+body > .row:nth-child(1) > div:nth-child(2) img {
+    height: 10px;
 }
 
-div.container-fluid > .row:nth-child(5) {
-    margin-bottom: 52px;
+body > .row:last-child {
+    padding-top: 50px;
+    margin-bottom: 104px;
+}
+
+body > .row:nth-child(2) {
+    padding-top: 50px;
 }
 
 /* PANEL SETUP */
@@ -195,6 +203,7 @@ div.container-fluid > .row:nth-child(5) {
     height: 100%;
     max-width: 100%;
     max-height: 100%;
+    border-radius: 4px;
 }
 
 #videoOverlay {
@@ -232,14 +241,16 @@ div.container-fluid > .row:nth-child(5) {
 }
 
 .parent:nth-child(3) video, .parent:nth-child(3) img { /* video in text component */
-    height: 100%;
     max-height: 100%;
     float: left;
     max-width: 100%;
+    bottom: 0;
+    position: absolute;
+    border-radius: 4px;
 }
 
-.parent:nth-child(3) video {
-    width: 100%;
+.parent:nth-child(3) img {
+    right: 0;
 }
 
 .parent:nth-child(3) > .row:nth-child(1) > .col-md-12 > div {
@@ -342,6 +353,7 @@ p, span {
     /*bottom: 48px; /* same height as controls */
     color: #414141;
     background-color: #d8d8d8;
+    border-radius: 4px;
 }
 
 .parent > .row {
@@ -509,9 +521,10 @@ i {
     font-weight: bold;
     cursor: pointer;
 }
-
 .glossary:hover {
-    background: orange;
+    background-color: #272626;
+    color: #ededed;
+    border-radius: 4px;
 }
 
 
@@ -601,6 +614,7 @@ i {
 }
 .slick-slide img {
     display: block;
+    border-radius: 4px;
    /* transition: all .2s ease-in-out;*/
 }
 .slick-slide img:hover {

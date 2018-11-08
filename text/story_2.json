@@ -16,38 +16,37 @@
                     },
                     {
                         "text": "world",
-                        "timestamp": []
+                        "timestamp": [1, 1.465],
+                        "definition": "The earth, together with all of its countries, peoples, and natural features." 
                     },
                     {
                        "text": " first began, there was no "
                     },
                     {
-                        "text": "land",
-                        "timestamp": []
-                    },
-                    {
-                        "text": ". There was only the "
+                        "text": "land. There was only the "
                     },
                     {
                         "text": "Sea",
-                        "timestamp": []
+                        "timestamp": [4, 6],
+                        "definition": "The expanse of salt water that covers most of the earth's surface and surrounds its landmasses."
                     },
                     {
                         "text": " and the "
                     },
                     {
                         "text": "Sky",
-                        "timestamp": []
+                        "timestamp": [3, 3.7],
+                        "definition": "The region of the atmosphere and outer space seen from the earth."
                     },
                     {
-                        "text": ". A huge, beautiful "
+                        "text": ". A "
+                    },
+                    {   "text": "huge",
+                        "timestamp": [8.2, 9],
+                        "definition": "Extremely large; enormous."
                     },
                     {
-                        "text": "Kite",
-                        "timestamp": []
-                    },
-                    {
-                        "text": " (a bird similar to a hawk) flew between them."
+                        "text": ", beautiful Kite (a bird similar to a hawk) flew between them."
                     }
                 ]
             },
