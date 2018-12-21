@@ -5,6 +5,19 @@ World Around You is a digital library of stories, created collaboratively by Dea
 
 This is the demo of the reader's view. Each dot along the slider bar represents a page. Each page has 3 components, or sub-pages: photo, signed video, and glossary interactivity. 
 
+## Index
+
+```
+css - All stylesheets (Bootstrap and custom), along with fonts
+img - All images/icons that the website uses
+js - All scripts
+text — The temporary JSON backend
+videos/
+    fsl_luzon — Videos for the Luzon regional dialect of Filipino Sign Language
+    fsl_visayas — Videos for the Visayas regional dialect of FSL, uses a FSL_LUZON signer as a placeholder to demonstrate functionality only
+index.html — Home page
+```
+
 ## Key features
 
 - After hovering over menu buttons for 0.5 seconds, a text description appears. Users often will stay that long on a button if they are uncertain what it does.
@@ -28,8 +41,4 @@ This is the demo of the reader's view. Each dot along the slider bar represents 
 
 - GitHub serves large files with a lag. In this demo, videos are large files. For optimal performance, download and run locally. 
 
-## Bugs to fix
-- Closing fullscreen on the third component, because the text will not resize properly. 
-- Leaving text in the search bar, because it will overlap with the search icon.
-- Non-responsive web components.
 
