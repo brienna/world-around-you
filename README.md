@@ -7,6 +7,8 @@ This repo holds the style guides, wireframes, and prototype implementation of th
 
 In the reader's view, each dot along the main slider bar represents a page in the story. Each page has 3 components, or sub-pages: 1) photo, 2) signed video, and 3) glossary interactivity. A sample story is shown in this prototype: "Malakas and Maganda." 
 
+All dependencies are included. This prototype can run offline. 
+
 ## Repo architecture
 
 ```
@@ -51,6 +53,7 @@ However, GitHub serves large files with a lag. Videos are considered large files
 
 ![Fullscreen interactivity](readme_gifs/fullscreen.gif)
 
+- Pause or restart signed video by hovering over it. 
 - Change written language at any point.
 - On 1st page (after title page)
     - Change sign language. Limitation: Make sure you change back to FSL: Luzon before going to any other page. 

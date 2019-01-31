@@ -1,7 +1,7 @@
 
 window.onload = function() {
     
-    /**************************** LOAD STORY JSON FILE ****************************/
+    /**************************** LOAD DATA FROM TEMPORARY JSON DATABASE ****************************/
 
     var whichStory = "story_2"; // the ID of the story in the JSON file
     var currStoryData = null;
@@ -41,9 +41,9 @@ window.onload = function() {
         }
     }
 
-    /**************************** PARSE PAGE INTO HTML ELEMENTS ****************************/
+    /**************************** PARSE DATA INTO HTML ELEMENTS ****************************/
 
-    // Get title from JSON file
+    // Get title from JSON data
     function parseTitle() {
         var title = currStoryData["languages"][chosenLanguage][0].glossary[0].text;
         var titleElement = document.getElementById('title');
@@ -124,6 +124,9 @@ window.onload = function() {
         })
     }
 
+    /**************************** SPECIFY SOME HELPER FUNCTIONS ****************************/
+
+    // Loops video at given time interval (in seconds)
     function playVideoInterval(start, end) {
         video = document.getElementById('glossaryVid');
 
@@ -143,6 +146,7 @@ window.onload = function() {
         }
     }
 
+    // Resizes story text (which varies from page to page) to always fit within the constant sized div
     $.fn.resizeText = function(options) {
         var settings = $.extend({ maxfont: 40, minfont: 15 }, options);
 
@@ -358,6 +362,7 @@ window.onload = function() {
 
     /**************************** SLIDER BAR ****************************/
     
+    // Create slider bar for pagination
     function createSlider() {
         $("#slider").slider({
             min: 1,
@@ -415,6 +420,7 @@ window.onload = function() {
         changeSignLanguage();
     }
 
+    // Change language
     function changeTextLanguage() {
         var triggerDiv = document.getElementById('changeTextLang');
         triggerDiv.addEventListener('click', function(e) {
@@ -475,6 +481,7 @@ window.onload = function() {
         });
     }
 
+    // Change sign language 
     function changeSignLanguage() {
         var triggerDiv = document.getElementById('changeSignLang');
         triggerDiv.addEventListener('click', function(e) {
@@ -545,6 +552,7 @@ window.onload = function() {
 
     /**************************** THUMBNAIL CAROUSEL ****************************/
 
+    // Set up the thumbnail carousel
     function setupCarousel() {
         $(".regular").slick({
             dots: true,
@@ -553,7 +561,10 @@ window.onload = function() {
             slidesToScroll: 3
         });
     }
+
+    /**************************** FULL SCREEN ****************************/
     
+    // Set up full screen 
     function setupFullScreen() {
         // If browser enables Fullscreen API
         if (document.fullscreenEnabled ||

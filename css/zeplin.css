@@ -3,6 +3,21 @@ body {
     background-color: #ffffff;
 }
 
+@font-face {
+    font-family: "Nunito";
+    src: url("fonts/Nunito-Regular.ttf");
+}
+@font-face {
+    font-family: "Nunito";
+    src: url("fonts/Nunito-Bold.ttf");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "Nunito";
+    src: url("fonts/Nunito-Italic.ttf");
+    font-style: italic;
+}
+
 nav {
     height: 90px;
     background-color: #fcfcfc;
