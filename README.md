@@ -1,24 +1,46 @@
 
 # World Around You
 
-World Around You is a digital library of stories, created collaboratively by Deaf and hearing people for Deaf children and their families, the school community, and the Deaf community. It is a web platform designed to make collaboration easy for uploading and editing contents for reading and viewing. It provides a space to watch, read, interact, like, share, comment, upload, and edit the contents. 
+A digital library of stories, created collaboratively by Deaf and hearing people for Deaf children and their families, the school community, and the Deaf community. It is a web platform designed to make collaboration easy for uploading and editing contents for reading and viewing. It provides a space to watch, read, interact, like, share, comment, upload, and edit the contents. 
 
-This is the demo of the reader's view. Each dot along the slider bar represents a page. Each page has 3 components, or sub-pages: photo, signed video, and glossary interactivity. 
+This repo holds the style guides, wireframes, and prototype implementation of the reader's view, beginning with Filipino Sign Language (FSL).
 
-## Index
+In the reader's view, each dot along the main slider bar represents a page in the story. Each page has 3 components, or sub-pages: 1) photo, 2) signed video, and 3) glossary interactivity. A sample story is shown in this prototype: "Malakas and Maganda." 
+
+## Repo architecture
 
 ```
-css - All stylesheets (Bootstrap and custom), along with fonts
-img - All images/icons that the website uses
-js - All scripts
-text — The temporary JSON backend
-videos/
-    fsl_luzon — Videos for the Luzon regional dialect of Filipino Sign Language
-    fsl_visayas — Videos for the Visayas regional dialect of FSL, uses a FSL_LUZON signer as a placeholder to demonstrate functionality only
-index.html — Home page
+./
+|
+|_ css — stylesheets
+    |_ fonts — font files
+|
+|_ img 
+    |_ carousel — placeholder images for the "up next" and "from Massimo V." thumbnail carousels
+    |_ glossary — placeholder images for sample vocabulary
+    |_ icons — all icons used on the page
+    |_ story_2 — photos from sample story "Malakas and Maganda" 
+|
+|_ js — scripts, including all dependencies (e.g. jQuery)
+|
+|_ readme_gifs — gifs for this README
+|
+|_ style guides & wireframes — designer's instructions
+|
+|_ text — temporary JSON database
+|
+|_ videos
+    |_ fsl_luzon — signed videos from another sample story "The Lion and Mouse," repurposed to demonstrate switching sign languages within a story, e.g. the Filipino Sign Language Luzon regional dialect (but to clarify, the sign language in these videos is not FSL Luzon)
+    |_ fsl_visayas — signed videos from the sample story "Malakas and Maganda"
 ```
 
-## Key features
+## Operating instructions 
+
+View demo at http://briennakh.me/world-around-you/.
+
+However, GitHub serves large files with a lag. Videos are considered large files. For optimal performance, download repo and run on a local server such as `php -S localhost:4000`.
+
+## Key functionalities
 
 - After hovering over menu buttons for 0.5 seconds, a text description appears. Users often will stay that long on a button if they are uncertain what it does.
 
@@ -36,9 +58,4 @@ index.html — Home page
 - Drag to slide video thumbnail carousels, and hover over thumbnails for interactivity. 
 
 ![Thumbnail carousel interactivity](readme_gifs/carousel.gif) 
-
-## Demo limitations
-
-- GitHub serves large files with a lag. In this demo, videos are large files. For optimal performance, download and run locally. 
-
 
